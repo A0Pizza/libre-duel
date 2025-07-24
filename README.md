@@ -15,3 +15,5 @@ Join our Revolt server [here](<https://rvlt.gg/p4azhCRE>)
 See: <https://github.com/EliTheGingerCat/roblox-build-tools?tab=readme-ov-file#only-for-me>
 
 Though, I am going to have to come up with an actual solution for this since this project has a decent chance of receiving contributions from random people.
+
+I want to follow this: <https://nvie.com/posts/a-successful-git-branching-model/>
