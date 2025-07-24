@@ -9,3 +9,9 @@ At some point I realised it would be cool how Bridge Duel would have two edition
 When Bridge Duel got taken down, a new reason emerged: Libre Duel would now be the *only* variant of Bridge Duel available. The hope is that this game will be different enough to not warrant a takedown.
 
 Join our Revolt server [here](<https://rvlt.gg/p4azhCRE>)
+
+## Development
+
+See: <https://github.com/EliTheGingerCat/roblox-build-tools?tab=readme-ov-file#only-for-me>
+
+Though, I am going to have to come up with an actual solution for this since this project has a decent chance of receiving contributions from random people.
