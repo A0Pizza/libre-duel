@@ -7,3 +7,9 @@ I also realised it would be a good idea because I love [FOSS](<https://opensourc
 At some point I realised it would be cool how Bridge Duel would have two editions: Proprietary and Libre, just like Minecraft has Java and Bedrock.
 
 When Bridge Duel got taken down, a new reason emerged: Libre Duel would now be the *only* variant of Bridge Duel available. The hope is that this game will be different enough to not warrant a takedown.
+
+## Development
+
+See: <https://github.com/EliTheGingerCat/roblox-build-tools?tab=readme-ov-file#only-for-me>
+
+Though, I am going to have to come up with an actual solution for this since this project has a decent chance of receiving contributions from random people.
