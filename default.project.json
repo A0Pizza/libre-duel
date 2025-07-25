@@ -17,6 +17,10 @@
       }
     },
 
+    "ReplicatedStorage": {
+      "$path": "./src/ReplicatedStorage"
+    },
+
     "SoundService": {
       "$properties": {
         "RespectFilteringEnabled": true
