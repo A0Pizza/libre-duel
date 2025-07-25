@@ -12,7 +12,7 @@
         "Brightness": 2,
         "GlobalShadows": true,
         "Outlines": false,
-        "Technology": "Voxel"
+        "Technology": "Future"
       }
     },
 
@@ -27,6 +27,12 @@
         "FilteringEnabled": true
       },
       "$path": "./src/Workspace"
+    },
+
+    "ServerStorage": {
+      "$properties": {
+      },
+      "$path": "./src/ServerStorage"
     }
   }
 }
