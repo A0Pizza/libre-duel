@@ -1,0 +1,37 @@
+{
+  "name": "libre-duel",
+  "emitLegacyScripts": false,
+  "tree": {
+    "$className": "DataModel",
+    "Lighting": {
+      "$properties": {
+        "Ambient": [
+          0,
+          0,
+          0
+        ],
+        "Brightness": 2,
+        "GlobalShadows": true,
+        "Outlines": false,
+        "Technology": "Voxel"
+      }
+    },
+
+    "ReplicatedStorage": {
+      "$path": "./src/ReplicatedStorage"
+    },
+
+    "SoundService": {
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    },
+
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true
+      },
+      "$path": "./src/Workspace"
+    }
+  }
+}
