@@ -30,7 +30,7 @@ local function on_invoke(player: Player, cube_position: unknown): string?
 	end
 
 	local distance = (cube_position - player_position).Magnitude
-	if distance > player_range then
+	if distance > player_range + 6 then
 		return "Too far."
 	end
 
