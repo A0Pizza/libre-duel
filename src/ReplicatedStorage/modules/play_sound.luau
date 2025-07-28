@@ -18,7 +18,7 @@ if not soundid then
 end
     local instance = Instance.new("Sound")
     instance.Parent = game:WaitForChild("SoundService")
-    instance.SoundId = "rbxassetid://".. soundid
+    instance.SoundId = `rbxassetid://{soundid}`
     instance:Play()
 end
 
