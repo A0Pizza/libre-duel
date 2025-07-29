@@ -6,7 +6,7 @@ local sounds = {
 --[[
 
 placeholder sounds for now
-if anyone has some Cool sounds that can be used here, please submit a pull request :3
+if anyone has some better sounds that can be used here, please submit a pull request
 
 --]]
 
