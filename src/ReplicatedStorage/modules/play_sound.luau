@@ -10,16 +10,24 @@ if anyone has some better sounds that can be used here, please submit a pull req
 
 --]]
 
-local function play_sound(sound)
+local function play_sound(sound, position)
     local soundlist = sounds[sound]
     local soundid = soundlist and soundlist[math.random(1, #soundlist)]
     assert(soundlist, "Sound list cannot be nil.")
     assert(soundid, "Sound ID cannot be nil.")
-    local instance = Instance.new("Sound")
-    instance.Parent = game:WaitForChild("SoundService")
-    instance.PlayOnRemove = true
-    instance.SoundId = `rbxassetid://{soundid}`
-    instance:Destroy()
+
+    local part = Instance.new("Part")
+    local sound = Instance.new("Sound")
+
+    part.Parent = game:WaitForChild("Workspace")
+    sound.Parent = part
+
+    print(position)
+    part.Position = position
+    sound.PlayOnRemove = true
+    sound.SoundId = `rbxassetid://{soundid}`
+
+    part:Destroy()
 end
 
 return play_sound

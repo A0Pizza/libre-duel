@@ -7,7 +7,6 @@ local cube_size = require(ReplicatedStorage.modules.cube_size)
 local get_player_position = require(ReplicatedStorage.modules.get_player_position)
 local player_range = require(ReplicatedStorage.modules.player_range)
 local snap_coordinate = require(ReplicatedStorage.modules.snap_coordinate)
-local play_sound = require(ReplicatedStorage.modules.play_sound)
 
 local local_player = Players.LocalPlayer
 local local_mouse = local_player:GetMouse()
@@ -66,7 +65,6 @@ local function on_input_began(input: InputObject): ()
 	local error_message: string? = ReplicatedStorage.remotes.place_cube:InvokeServer(snapped)
 
 	if error_message == nil then
-		play_sound("block_place")
 		cube_cache[snapped] = true
 	else
 		print(`Failed to place block. Reason: {error_message}`)
