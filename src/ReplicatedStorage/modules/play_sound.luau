@@ -13,9 +13,9 @@ if anyone has some better sounds that can be used here, please submit a pull req
 local function play_sound(sound)
     local soundlist = sounds[sound]
     local soundid = soundlist and soundlist[math.random(1, #soundlist)]
-if not soundid then
-    warn("Invalid sound entered")
-end
+    if not soundid then
+        warn("Invalid sound entered")
+    end
     local instance = Instance.new("Sound")
     instance.Parent = game:WaitForChild("SoundService")
     instance.SoundId = `rbxassetid://{soundid}`
