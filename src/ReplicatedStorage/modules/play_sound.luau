@@ -10,11 +10,11 @@ if anyone has some better sounds that can be used here, please submit a pull req
 
 --]]
 
-local function play_sound(sound: string, position: Vector3): ()
-    local soundlist = sounds[sound]
-    local soundid = soundlist and soundlist[math.random(1, #soundlist)]
-    assert(soundlist, "Sound list cannot be nil.")
-    assert(soundid, "Sound ID cannot be nil.")
+local function play_sound(name: string, position: Vector3): ()
+    local list = sounds[name]
+    local id = list and list[math.random(1, #list)]
+    assert(list, "Sound list cannot be nil.")
+    assert(id, "Sound ID cannot be nil.")
 
     local part = Instance.new("Part")
     local sound = Instance.new("Sound")
@@ -25,7 +25,7 @@ local function play_sound(sound: string, position: Vector3): ()
     print(position)
     part.Position = position
     sound.PlayOnRemove = true
-    sound.SoundId = `rbxassetid://{soundid}`
+    sound.SoundId = `rbxassetid://{id}`
 
     part:Destroy()
 end
