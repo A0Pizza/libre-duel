@@ -7,6 +7,7 @@
 - [Development](#development)
 - [Style](#style)
 - [Credits](#credits)
+- [License](#license)
 
 ## Purpose
 
@@ -111,3 +112,11 @@ Link: https://create.roblox.com/store/asset/6586979979
 
 Used for: Nothing yet, but will be used for player damaged.  
 Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
+
+# License
+
+Libre Duel is licensed under the MIT License. See [`LICENSE.txt`](./LICENSE.txt). This license does not even need a summary.
+
+Yes, you are allowed to republish the game exactly and profit off of it!
+
+However, as the license says, attribution is necessary, preferably in the game description. Could also be in an in-game menu, on a website, et cetera. As long as it is easily visible.
