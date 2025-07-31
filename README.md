@@ -91,10 +91,10 @@ I want to follow this: <https://nvie.com/posts/a-successful-git-branching-model/
 
 ## Credits
 
-Libre Duel is developed by @EliTheGingerCat and @coolpeter98.
+Libre Duel is developed by [@EliTheGingerCat](https://github.com/EliTheGingerCat) and [@coolpeter98](https://github.com/coolpeter98).
 
 It also had contributions from:
-- @Austriaaa
+- [@Austriaaa](https://github.com/Austriaaa/)
 
 It also uses some assets:
 
