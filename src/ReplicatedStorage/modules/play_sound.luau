@@ -18,14 +18,14 @@ local function play_sound(name: string, position: Vector3): ()
     assert(id, `No ids were found in sound list "{name}".`)
 
     local part = Instance.new("Part")
-    local sound = Instance.new("Sound")
-
-    part.Parent = game:WaitForChild("Workspace")
-    sound.Parent = part
-
     part.Position = position
+
+    local sound = Instance.new("Sound")
     sound.PlayOnRemove = true
     sound.SoundId = `rbxassetid://{id}`
+    sound.Parent = part
+
+    part.Parent = workspace
 
     part:Destroy()
 end
