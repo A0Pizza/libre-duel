@@ -91,6 +91,13 @@ I want to follow this: <https://nvie.com/posts/a-successful-git-branching-model/
 
 ## Credits
 
+Libre Duel is developed by @EliTheGingerCat and @coolpeter98.
+
+It also had contributions from:
+- @Austriaaa
+
+It also uses some assets:
+
 ### Half Life 2 Grenade Tick
 
 Author: [@the1oler](https://www.roblox.com/users/87456522/profile)  
