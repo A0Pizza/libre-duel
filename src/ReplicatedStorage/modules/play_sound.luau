@@ -10,7 +10,7 @@ if anyone has some better sounds that can be used here, please submit a pull req
 
 --]]
 
-local function play_sound(sound, position)
+local function play_sound(sound: string, position: Vector3): ()
     local soundlist = sounds[sound]
     local soundid = soundlist and soundlist[math.random(1, #soundlist)]
     assert(soundlist, "Sound list cannot be nil.")
