@@ -5,6 +5,7 @@
 - [Purpose](#purpose)
 - [Start Contributing](#start-contributing)
 - [Development](#development)
+- [Style](#style)
 - [Credits](#credits)
 
 ## Purpose
@@ -78,6 +79,14 @@ This is covered in the guide above.
 Though, I am going to have to come up with an actual solution for this since this project has a decent chance of receiving contributions from random people.
 
 I want to follow this: <https://nvie.com/posts/a-successful-git-branching-model/>
+
+## Style
+
+- Add a trailing newline to text files.
+- Use trailing commas in code.
+- Use `snake_case`.
+- Place all requires in the same spot.
+- Order requires alphabetically.
 
 ## Credits
 
