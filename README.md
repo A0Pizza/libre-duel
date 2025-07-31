@@ -17,3 +17,27 @@ See: <https://github.com/EliTheGingerCat/roblox-build-tools?tab=readme-ov-file#o
 Though, I am going to have to come up with an actual solution for this since this project has a decent chance of receiving contributions from random people.
 
 I want to follow this: <https://nvie.com/posts/a-successful-git-branching-model/>
+
+## Credits
+
+### Half Life 2 Grenade Tick
+
+Author: [@the1oler](https://www.roblox.com/users/87456522/profile)  
+Type: Sound effect  
+Link: https://create.roblox.com/store/asset/2164165859
+
+
+
+Used for: Block placed  
+Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
+
+### cartoon_pop
+
+Author: [@Schnogrind](https://www.roblox.com/users/52134822/profile)  
+Type: Sound effect  
+Link: https://create.roblox.com/store/asset/6586979979
+
+
+
+Used for: Nothing yet, but will be used for player damaged.  
+Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
