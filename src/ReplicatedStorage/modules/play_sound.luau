@@ -12,9 +12,10 @@ if anyone has some better sounds that can be used here, please submit a pull req
 
 local function play_sound(name: string, position: Vector3): ()
     local list = sounds[name]
-    local id = list and list[math.random(1, #list)]
-    assert(list, "Sound list cannot be nil.")
-    assert(id, "Sound ID cannot be nil.")
+    assert(list, `Sound list "{name}" was not found.`)
+
+    local id = list[math.random(1, #list)]
+    assert(id, `No ids were found in sound list "{name}".`)
 
     local part = Instance.new("Part")
     local sound = Instance.new("Sound")
