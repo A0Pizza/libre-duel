@@ -7,6 +7,7 @@ local cube_cache = require(ReplicatedStorage.modules.cube_cache)
 local get_player_position = require(ReplicatedStorage.modules.get_player_position)
 local player_range_server = require(ServerScriptService.player_range_server)
 local snap_coordinate = require(ReplicatedStorage.modules.snap_coordinate)
+local play_sound_excluding = require(ServerScriptService.modules.play_sound_excluding)
 
 local function verify_coordinate(coordinate: number): boolean
 	return coordinate == snap_coordinate(coordinate)
@@ -49,6 +50,7 @@ local function on_invoke(player: Player, cube_position: unknown): string?
 	local clone = cube:Clone()
 	clone.Position = cube_position
 	clone.Parent = workspace
+	play_sound_excluding(player, "block_place", cube_position)
 
 	return
 end

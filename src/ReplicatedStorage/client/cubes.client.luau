@@ -6,6 +6,7 @@ local cube_cache = require(ReplicatedStorage.modules.cube_cache)
 local cube_size = require(ReplicatedStorage.modules.cube_size)
 local get_player_position = require(ReplicatedStorage.modules.get_player_position)
 local player_range = require(ReplicatedStorage.modules.player_range)
+local play_sound_local = require(script.Parent.modules.play_sound_local)
 local snap_coordinate = require(ReplicatedStorage.modules.snap_coordinate)
 
 local local_player = Players.LocalPlayer
@@ -61,6 +62,8 @@ local function on_input_began(input: InputObject): ()
 	if occupied then
 		return
 	end
+
+	play_sound_local("block_place", snapped)
 
 	local error_message: string? = ReplicatedStorage.remotes.place_cube:InvokeServer(snapped)
 
