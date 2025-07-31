@@ -23,7 +23,6 @@ local function play_sound(name: string, position: Vector3): ()
     part.Parent = game:WaitForChild("Workspace")
     sound.Parent = part
 
-    print(position)
     part.Position = position
     sound.PlayOnRemove = true
     sound.SoundId = `rbxassetid://{id}`
