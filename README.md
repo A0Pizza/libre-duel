@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Purpose](#purpose)
+- [Start Contributing](#start-contributing)
 - [Development](#development)
 - [Credits](#credits)
 
@@ -18,9 +19,61 @@ When Bridge Duel got taken down, a new reason emerged: Libre Duel would now be t
 
 Join our Revolt server [here](<https://rvlt.gg/p4azhCRE>)
 
+## Start Contributing
+
+Here is a guide to prepare everything to start contributing. It assumes you know NOTHING.
+
+Similar to the scientific method, it is optimal to read through all the instructions before beginning.
+
+Feel free to ask for help on the Revolt server!
+
+1. Fork this repository on GitHub. In the fork options, unselect this option: Copy the `main` branch only
+1. Install [Git](https://git-scm.com/).
+3. Open up a terminal.
+4. Using the `cd` command, change working directory into a folder in which you want to store the `libre-duel` repository. The repository will soon be a *child* of this folder.
+
+Let us follow an example in which someone wants to store the repository in a directory called `projects`. The `projects` directory is in their home directory (`~`). Thus, they run `cd ~/projects`.
+
+New term: USER = Your GitHub username.
+
+5. Clone your fork. This can be done with `git clone https://github.com/USER/libre-duel.git`. Notice the use of "USER", which represents your GitHub username.
+6. Let Git do its thing.
+
+You now have a local copy of the `libre-duel` repository. It is all stored in a directory. In the example, this directory would be `~/projects/libre-duel`.
+
+7. Run `git clone https://github.com/EliTheGingerCat/roblox-build-tools.git`.
+8. Let Git do its thing.
+
+You now have a local copy of the `roblox-build-tools` repository.
+
+It is a *sibling* of `libre-duel. That is, they both share the same parent.
+
+Consider this diagram:
+
+```
+> ~
+--> projects
+----> libre-duel
+----> roblox-build-tools
+```
+
+9. Enter the `libre-duel` repository with `cd libre-duel`.
+10. Install [Rokit](https://github.com/rojo-rbx/rokit).
+11. Run `rokit install`.
+
+You now have [Lune](https://lune-org.github.io/docs/) and [Rojo](https://rojo.space/).
+
+Optional: Run `lune list` to see the available scripts. Only `build` and `syncback` will be of value. You can run:
+- `lune run build`: Build the Roblox Place into `./libre-duel.rbxl`.
+- `lune run syncback`: Sync ServerStorage and Workspace into the filesystem. ⚠️ This is buggy and may need to be run multiple times. I will try to fix it.
+
+Question: How do I know I can trust all this?  
+Answer: This is not something that really belongs in this README. If you want, we can talk about it in the Revolt server.
+
 ## Development
 
-See: <https://github.com/EliTheGingerCat/roblox-build-tools?tab=readme-ov-file#only-for-me>
+See: <https://github.com/EliTheGingerCat/roblox-build-tools?tab=readme-ov-file#only-for-me>  
+This is covered in the guide above.
 
 Though, I am going to have to come up with an actual solution for this since this project has a decent chance of receiving contributions from random people.
 
