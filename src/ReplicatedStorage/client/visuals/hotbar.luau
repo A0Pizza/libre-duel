@@ -6,8 +6,7 @@ local create_element = React.createElement
 
 local function main()
 	return create_element("ScreenGui",{},
-		create_element("Frame",
-			{
+		create_element("Frame",{
 				AnchorPoint = Vector2.new(0.5, 1),
 				BackgroundColor3 = Color3.new(0, 0, 0),
 				BackgroundTransparency = 0.5,
@@ -15,7 +14,7 @@ local function main()
 				Size = UDim2.fromOffset(685, 80),
 			},
 			create_element("UICorner",{
-				CornerRadius = UDim.new(0.45, 0)
+				CornerRadius = UDim.new(0.45, 0),
 			}),
 			create_element("UIStroke",{
 				Color = Color3.new(1, 1, 1),
@@ -107,7 +106,7 @@ local function main()
 						}),
 					}),
 					create_element("UICorner",{
-						CornerRadius = UDim.new(0.45, 0)
+						CornerRadius = UDim.new(0.45, 0),
 					})
 				)
 			),
@@ -137,7 +136,7 @@ i'm not sure how to make the equivalent of functions in react
 				},
 					create_element("UIAspectRatioConstraint",{}),
 					create_element("UICorner",{
-						CornerRadius = UDim.new(0.45, 0)
+						CornerRadius = UDim.new(0.45, 0),
 					}),
 					create_element("UIStroke",{
 						Color = Color3.new(1, 1, 1),
@@ -148,7 +147,7 @@ i'm not sure how to make the equivalent of functions in react
 								ColorSequenceKeypoint.new(0, Color3.fromRGB(201, 201, 201)),
 								ColorSequenceKeypoint.new(1, Color3.fromRGB(70, 70, 70)),
 						}),
-						Rotation = -90
+						Rotation = -90,
 						})
 					)
 				),
@@ -160,7 +159,7 @@ i'm not sure how to make the equivalent of functions in react
 				},
 					create_element("UIAspectRatioConstraint",{}),
 					create_element("UICorner",{
-						CornerRadius = UDim.new(0.45, 0)
+						CornerRadius = UDim.new(0.45, 0),
 					})
 				),
 				create_element("Frame",{ --slot 3
@@ -171,7 +170,7 @@ i'm not sure how to make the equivalent of functions in react
 				},
 					create_element("UIAspectRatioConstraint",{}),
 					create_element("UICorner",{
-						CornerRadius = UDim.new(0.45, 0)
+						CornerRadius = UDim.new(0.45, 0),
 					})
 				),
 				create_element("Frame",{ --slot 4
@@ -182,7 +181,7 @@ i'm not sure how to make the equivalent of functions in react
 				},
 					create_element("UIAspectRatioConstraint",{}),
 					create_element("UICorner",{
-						CornerRadius = UDim.new(0.45, 0)
+						CornerRadius = UDim.new(0.45, 0),
 					})
 				),
 				create_element("Frame",{ --slot 5
@@ -193,7 +192,7 @@ i'm not sure how to make the equivalent of functions in react
 				},
 					create_element("UIAspectRatioConstraint",{}),
 					create_element("UICorner",{
-						CornerRadius = UDim.new(0.45, 0)
+						CornerRadius = UDim.new(0.45, 0),
 					})
 				),
 				create_element("Frame",{ --slot 6
@@ -204,7 +203,7 @@ i'm not sure how to make the equivalent of functions in react
 				},
 					create_element("UIAspectRatioConstraint",{}),
 					create_element("UICorner",{
-						CornerRadius = UDim.new(0.45, 0)
+						CornerRadius = UDim.new(0.45, 0),
 					})
 				),
 				create_element("Frame",{ --slot 7
@@ -215,7 +214,7 @@ i'm not sure how to make the equivalent of functions in react
 				},
 					create_element("UIAspectRatioConstraint",{}),
 					create_element("UICorner",{
-						CornerRadius = UDim.new(0.45, 0)
+						CornerRadius = UDim.new(0.45, 0),
 					})
 				),
 				create_element("Frame",{ --slot 8
@@ -226,7 +225,7 @@ i'm not sure how to make the equivalent of functions in react
 				},
 					create_element("UIAspectRatioConstraint",{}),
 					create_element("UICorner",{
-						CornerRadius = UDim.new(0.45, 0)
+						CornerRadius = UDim.new(0.45, 0),
 					})
 				),
 				create_element("Frame",{ --slot 9
@@ -237,7 +236,7 @@ i'm not sure how to make the equivalent of functions in react
 				},
 					create_element("UIAspectRatioConstraint",{}),
 					create_element("UICorner",{
-						CornerRadius = UDim.new(0.45, 0)
+						CornerRadius = UDim.new(0.45, 0),
 					})
 				)
 			)
