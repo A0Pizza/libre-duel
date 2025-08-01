@@ -8,7 +8,7 @@ local function main()
 	return create_element("ScreenGui",{},
 		create_element("Frame",{
 				AnchorPoint = Vector2.new(0.5, 1),
-				BackgroundColor3 = Color3.new(0, 0, 0),
+				BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 				BackgroundTransparency = 0.5,
 				Position = UDim2.new(0.5, 0, 1, -10),
 				Size = UDim2.fromOffset(685, 80),
@@ -17,7 +17,7 @@ local function main()
 				CornerRadius = UDim.new(0.45, 0),
 			}),
 			create_element("UIStroke",{
-				Color = Color3.new(1, 1, 1),
+				Color = Color3.fromRGB(255, 255, 255),
 				Thickness = 2,
 			},
 				create_element("UIGradient",{
@@ -49,10 +49,10 @@ local function main()
 					ZIndex = 3,
 					Text = "50",
 					TextScaled = true,
-					TextColor3 = Color3.new(1, 1, 1),
+					TextColor3 = Color3.fromRGB(255, 255, 255),
 				}),
 				create_element("Frame",{ --overlay (for example, at 50 hp, overlay will be at 50% size)
-					BackgroundColor3 = Color3.new(1, 1, 1),
+					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					AnchorPoint = Vector2.new(0, 0.5),
 					Position = UDim2.fromScale(0, 0.5),
 					Size = UDim2.fromScale(0.5, 1),
@@ -90,10 +90,10 @@ local function main()
 					ZIndex = 3,
 					Text = "10",
 					TextScaled = true,
-					TextColor3 = Color3.new(1, 1, 1),
+					TextColor3 = Color3.fromRGB(255, 255, 255),
 				}),
 				create_element("Frame",{ --overlay (for example, at 10 hp, overlay will be at 50% size)
-					BackgroundColor3 = Color3.new(1, 1, 1),
+					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					AnchorPoint = Vector2.new(0, 0.5),
 					Position = UDim2.fromScale(0, 0.5),
 					Size = UDim2.fromScale(0.5, 1),
@@ -129,7 +129,7 @@ i'm not sure how to make the equivalent of functions in react
 
 ]]
 				create_element("Frame",{ --slot 1 (active slot)
-					BackgroundColor3 = Color3.new(0, 0, 0),
+					BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 					BackgroundTransparency = 0.75,
 					Size = UDim2.fromScale(1, 1),
 					LayoutOrder = 1,
@@ -139,7 +139,7 @@ i'm not sure how to make the equivalent of functions in react
 						CornerRadius = UDim.new(0.45, 0),
 					}),
 					create_element("UIStroke",{
-						Color = Color3.new(1, 1, 1),
+						Color = Color3.fromRGB(255, 255, 255),
 						Thickness = 2,
 					},
 						create_element("UIGradient",{
@@ -152,7 +152,7 @@ i'm not sure how to make the equivalent of functions in react
 					)
 				),
 				create_element("Frame",{ --slot 2
-					BackgroundColor3 = Color3.new(0, 0, 0),
+					BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 					BackgroundTransparency = 0.75,
 					Size = UDim2.fromScale(1, 1),
 					LayoutOrder = 2,
@@ -163,7 +163,7 @@ i'm not sure how to make the equivalent of functions in react
 					})
 				),
 				create_element("Frame",{ --slot 3
-					BackgroundColor3 = Color3.new(0, 0, 0),
+					BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 					BackgroundTransparency = 0.75,
 					Size = UDim2.fromScale(1, 1),
 					LayoutOrder = 3,
@@ -174,7 +174,7 @@ i'm not sure how to make the equivalent of functions in react
 					})
 				),
 				create_element("Frame",{ --slot 4
-					BackgroundColor3 = Color3.new(0, 0, 0),
+					BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 					BackgroundTransparency = 0.75,
 					Size = UDim2.fromScale(1, 1),
 					LayoutOrder = 4,
@@ -185,7 +185,7 @@ i'm not sure how to make the equivalent of functions in react
 					})
 				),
 				create_element("Frame",{ --slot 5
-					BackgroundColor3 = Color3.new(0, 0, 0),
+					BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 					BackgroundTransparency = 0.75,
 					Size = UDim2.fromScale(1, 1),
 					LayoutOrder = 5,
@@ -196,7 +196,7 @@ i'm not sure how to make the equivalent of functions in react
 					})
 				),
 				create_element("Frame",{ --slot 6
-					BackgroundColor3 = Color3.new(0, 0, 0),
+					BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 					BackgroundTransparency = 0.75,
 					Size = UDim2.fromScale(1, 1),
 					LayoutOrder = 6,
@@ -207,7 +207,7 @@ i'm not sure how to make the equivalent of functions in react
 					})
 				),
 				create_element("Frame",{ --slot 7
-					BackgroundColor3 = Color3.new(0, 0, 0),
+					BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 					BackgroundTransparency = 0.75,
 					Size = UDim2.fromScale(1, 1),
 					LayoutOrder = 7,
@@ -218,7 +218,7 @@ i'm not sure how to make the equivalent of functions in react
 					})
 				),
 				create_element("Frame",{ --slot 8
-					BackgroundColor3 = Color3.new(0, 0, 0),
+					BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 					BackgroundTransparency = 0.75,
 					Size = UDim2.fromScale(1, 1),
 					LayoutOrder = 8,
@@ -229,7 +229,7 @@ i'm not sure how to make the equivalent of functions in react
 					})
 				),
 				create_element("Frame",{ --slot 9
-					BackgroundColor3 = Color3.new(0, 0, 0),
+					BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 					BackgroundTransparency = 0.75,
 					Size = UDim2.fromScale(1, 1),
 					LayoutOrder = 9,
