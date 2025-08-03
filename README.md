@@ -4,12 +4,12 @@
 
 - [Purpose](#purpose)
 - [Contributing](#contributing)
- - [Setup the environment](#setup-the-environment)
- - [Add a feature](#add-a-feature)
- - [Development guidelines](#development-guidelines)
- - [Style](#style)
+	- [Setup the environment](#setup-the-environment)
+	- [Add a feature](#add-a-feature)
+	- [Development guidelines](#development-guidelines)
+	- [Style](#style)
 - [Credits](#credits)
- - [Assets](#assets)
+	- [Assets](#assets)
 - [License](#license)
 
 ## Purpose
@@ -84,8 +84,8 @@ This guide should be followed everytime you want to add a new feature or fix a b
 This guide adheres to git-flow, as mentioned below.
 
 1. Make sure your local repository is up to date. This comes in two parts:
- 1. Make sure your fork on GitHub is up to date. This can be done by going to the page, on <https://github.com/USER/libre-duel/tree/develop>, and clicking the Sync button.
- 2. Pull in any changes in your local repository. On the commandline, enter the folder that contains your local reposiotry via the `cd` command, then run `git pull`.
+	1. Make sure your fork on GitHub is up to date. This can be done by going to the page, on <https://github.com/USER/libre-duel/tree/develop>, and clicking the Sync button.
+	2. Pull in any changes in your local repository. On the commandline, enter the folder that contains your local reposiotry via the `cd` command, then run `git pull`.
 2. Checkout the `develop` branch with `git checkout develop`.
 3. Make a new branch.
 
