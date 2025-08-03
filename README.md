@@ -5,6 +5,7 @@
 - [Purpose](#purpose)
 - [Contributing](#contributing)
  - [Setup the environment](#setup-the-environment)
+ - [Add a feature](#add-a-feature)
  - [Development guidelines](#development-guidelines)
  - [Style](#style)
 - [Credits](#credits)
@@ -76,6 +77,58 @@ Optional: Run `lune list` to see the available scripts. Only `build` and `syncba
 Question: How do I know I can trust all this?  
 Answer: This is not something that really belongs in this README. If you want, we can talk about it in the Revolt server.
 
+### Add a feature
+
+This guide should be followed everytime you want to add a new feature or fix a bug.
+
+This guide adheres to git-flow, as mentioned below.
+
+1. Make sure your local repository is up to date. This comes in two parts:
+ 1. Make sure your fork on GitHub is up to date. This can be done by going to the page, on <https://github.com/USER/libre-duel/tree/develop>, and clicking the Sync button.
+ 2. Pull in any changes in your local repository. On the commandline, enter the folder that contains your local reposiotry via the `cd` command, then run `git pull`.
+2. Checkout the `develop` branch with `git checkout develop`.
+3. Make a new branch.
+
+The branch name is not so important as long as it concisely describes the branch purpose. Personally, I follow some rules for it, which you can follow too if you want.
+
+My branch names essentially come in two parts, `type` and `name`, and take the form of `{type}-{name}`.
+
+If the change I am making is a new feature, then `type = "feature"`. If the change is fixing a problem, then `type = "fix"`. There are other types of changes one may make, but I would probably just pick whichever one makes the most sense. Most changes are `feature`. [One time](https://github.com/evaera/moonwave/pull/171) I used `type = "docs"` but I would not do it anymore.
+
+As for `name`, I just describe the feature as concise as possible. I use 2 to 4 words. Sometimes I use imperative tense, sometimes it is just a compound noun.
+
+The whole branch is in `kebab-case`.
+
+For example, a branch that I [used](https://github.com/EliTheGingerCat/libre-duel/commit/5471a8e32c51b2449ebae025dcecc544c29a110f) for this repository is `feature-melee-attack`.
+
+Anyway, let your branch name be `BRANCH_NAME`. You would make a new branch with `git branch BRANCH_NAME`.
+
+4. Checkout your new branch with `git checkout BRANCH_NAME`.
+
+It is possible to do steps 3 and 4 in one command with `git checkout -b BRANCH_NAME`, but personally, I like doing each action separately.
+
+5. Work on your branch.
+
+First, make changes. Make sure to follow the [code style](#style).
+
+Then, you can stage all changes with `git add -A`.
+
+Then, commit the changes with `git commit`. Let your commit message be `COMMIT_MESSAGE`. You could use `git commit -m 'COMMIT_MESSAGE'`, but I prefer using the file (`COMMIT_EDITMSG`) that pops up without the `-m` flag. In my editor, Visual Studio Code, there are two vertical lines that appear in the file that make it easy for me to follow column limits. The first line should be at most 50 characters long, and every other line should be at most 72 characters long. Some stuff, like hyperlinks or commit ids, go over this limit; they should be placed on their own line (while still going over the limit since it would be weird to break them up into pieces).
+
+Repeat this until your work is done.
+
+6. Push the branch upstream with `git push -u origin HEAD`. (There are two assumptipns here: that your remote is called "origin" and that you are currently checked out on the branch you are working on (since "HEAD" is used).)
+
+7. The terminal will output a link to use to make a pull request. Use that link. Write a good title and description for your pull request.
+
+8. I, EliTheGingerCat, will review your code.
+
+If it gets approved, then I will merge it. You are done!
+
+If I request changes, then you will probably need to work on the branch more, though I often apply these changes on my own. If you want to apply the changes, then you can follow step 5 again. When you are done, you can just run `git push`. (I am pretty sure this pushes all local commits in your repository. If you only want to push commits in the branch you are working on, then I am pretty sure the command is `git push origin BRANCH_NAME`.)
+
+Thank you for contributing to Libre Duel!
+
 ### Development guidelines
 
 See: <https://github.com/EliTheGingerCat/roblox-build-tools?tab=readme-ov-file#only-for-me>  
@@ -83,7 +136,7 @@ This is covered in the guide above.
 
 Though, I am going to have to come up with an actual solution for this since this project has a decent chance of receiving contributions from random people.
 
-I want to follow this: <https://nvie.com/posts/a-successful-git-branching-model/>
+I want to follow git-flow: <https://nvie.com/posts/a-successful-git-branching-model/>
 
 Personally, I follow Conventional Commits: https://www.conventionalcommits.org/en/v1.0.0/
 
