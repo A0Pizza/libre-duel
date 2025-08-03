@@ -1,5 +1,7 @@
 local UserInputService = game:GetService("UserInputService")
 
+local attack_melee = require(script.Parent.modules.attack_melee)
+local keybinds = require(script.Parent.modules.keybinds)
 local place_cube = require(script.Parent.modules.place_cube)
 
 type tool = "sword" | "cube"
@@ -15,11 +17,11 @@ local function switch_tool(): ()
 end
 
 local function on_input_began(input: InputObject): ()
-	if input.KeyCode == Enum.KeyCode.E then
+	if input.KeyCode == keybinds.tool_switch then
 		switch_tool()
 	elseif input.UserInputType == Enum.UserInputType.MouseButton1 then
 		if tool == "sword" then
-
+			attack_melee()
 		else
 			place_cube()
 		end
