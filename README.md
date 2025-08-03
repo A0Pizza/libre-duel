@@ -142,6 +142,8 @@ Personally, I follow Conventional Commits: https://www.conventionalcommits.org/e
 
 Also see: https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
 
+This project does not follow Semantic Versioning since I do not see how it could be applied to video games. However, it *does* keep a [changelog](./CHANGELOG.md).
+
 ### Style
 
 - Add a trailing newline to text files.
