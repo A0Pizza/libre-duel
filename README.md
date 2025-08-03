@@ -81,6 +81,10 @@ Though, I am going to have to come up with an actual solution for this since thi
 
 I want to follow this: <https://nvie.com/posts/a-successful-git-branching-model/>
 
+Personally, I follow Conventional Commits: https://www.conventionalcommits.org/en/v1.0.0/
+
+Also see: https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
+
 ## Style
 
 - Add a trailing newline to text files.
