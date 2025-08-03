@@ -1,7 +1,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local play_sound_excluding = require(script.Parent.modules.play_sound_excluding)
-local player_range_server = require(script.Parent.player_range_server)
+local player_range_server = require(script.Parent.modules.player_range_server)
 
 local DAMAGE = 10
 
