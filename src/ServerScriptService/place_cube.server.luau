@@ -5,7 +5,7 @@ local ServerStorage = game:GetService("ServerStorage")
 local cube = ServerStorage.Cube
 local cube_cache = require(ReplicatedStorage.modules.cube_cache)
 local get_player_position = require(ReplicatedStorage.modules.get_player_position)
-local player_range_server = require(ServerScriptService.player_range_server)
+local player_range_server = require(ServerScriptService.modules.player_range_server)
 local snap_coordinate = require(ReplicatedStorage.modules.snap_coordinate)
 local play_sound_excluding = require(ServerScriptService.modules.play_sound_excluding)
 

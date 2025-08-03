@@ -1,12 +1,11 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local UserInputService = game:GetService("UserInputService")
 
 local cube_cache = require(ReplicatedStorage.modules.cube_cache)
 local cube_size = require(ReplicatedStorage.modules.cube_size)
 local get_player_position = require(ReplicatedStorage.modules.get_player_position)
 local player_range = require(ReplicatedStorage.modules.player_range)
-local play_sound_local = require(script.Parent.modules.play_sound_local)
+local play_sound_local = require(script.Parent.play_sound_local)
 local snap_coordinate = require(ReplicatedStorage.modules.snap_coordinate)
 
 local local_player = Players.LocalPlayer
@@ -34,11 +33,7 @@ local function snap_position(position: Vector3): Vector3
 	)
 end
 
-local function on_input_began(input: InputObject): ()
-	if input.UserInputType ~= Enum.UserInputType.MouseButton1 then
-		return
-	end
-
+local function place_cube(): ()
 	if local_mouse.Target == nil then
 		return
 	end
@@ -74,4 +69,4 @@ local function on_input_began(input: InputObject): ()
 	end
 end
 
-UserInputService.InputBegan:Connect(on_input_began)
+return place_cube
