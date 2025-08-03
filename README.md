@@ -3,10 +3,12 @@
 ## Table of Contents
 
 - [Purpose](#purpose)
-- [Start Contributing](#start-contributing)
-- [Development](#development)
-- [Style](#style)
+- [Contributing](#contributing)
+ - [Setup the environment](#setup-the-environment)
+ - [Development guidelines](#development-guidelines)
+ - [Style](#style)
 - [Credits](#credits)
+ - [Assets](#assets)
 - [License](#license)
 
 ## Purpose
@@ -21,7 +23,9 @@ When Bridge Duel got taken down, a new reason emerged: Libre Duel would now be t
 
 Join our Revolt server [here](<https://rvlt.gg/p4azhCRE>)
 
-## Start Contributing
+## Contributing
+
+### Setup the environment
 
 Here is a guide to prepare everything to start contributing. It assumes you know NOTHING.
 
@@ -72,7 +76,7 @@ Optional: Run `lune list` to see the available scripts. Only `build` and `syncba
 Question: How do I know I can trust all this?  
 Answer: This is not something that really belongs in this README. If you want, we can talk about it in the Revolt server.
 
-## Development
+### Development guidelines
 
 See: <https://github.com/EliTheGingerCat/roblox-build-tools?tab=readme-ov-file#only-for-me>  
 This is covered in the guide above.
@@ -85,7 +89,7 @@ Personally, I follow Conventional Commits: https://www.conventionalcommits.org/e
 
 Also see: https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
 
-## Style
+### Style
 
 - Add a trailing newline to text files.
 - Use trailing commas in code.
@@ -100,9 +104,11 @@ Libre Duel is developed by [@EliTheGingerCat](https://github.com/EliTheGingerCat
 It also had contributions from:
 - [@Austriaaa](https://github.com/Austriaaa/)
 
+### Assets
+
 It also uses some assets:
 
-### Half Life 2 Grenade Tick
+#### Half Life 2 Grenade Tick
 
 Author: [@the1oler](https://www.roblox.com/users/87456522/profile)  
 Type: Sound effect  
@@ -113,7 +119,7 @@ Link: https://create.roblox.com/store/asset/2164165859
 Used for: Block placed  
 Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
 
-### cartoon_pop
+#### cartoon_pop
 
 Author: [@Schnogrind](https://www.roblox.com/users/52134822/profile)  
 Type: Sound effect  
