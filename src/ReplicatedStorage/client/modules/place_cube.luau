@@ -1,6 +1,7 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local cube = ReplicatedStorage.Cube
 local cube_cache = require(ReplicatedStorage.modules.cube_cache)
 local cube_size = require(ReplicatedStorage.modules.cube_size)
 local get_player_position = require(ReplicatedStorage.modules.get_player_position)
@@ -58,9 +59,16 @@ local function place_cube(): ()
 		return
 	end
 
+	local cube_temporary = cube:Clone()
+	cube_temporary.Position = snapped
+	cube_temporary.Parent = workspace
+
 	play_sound_local("cube_place", snapped)
 
 	local error_message: string? = ReplicatedStorage.remotes.place_cube:InvokeServer(snapped)
+
+	-- Whether the server accepts or rejects the cube, this local one is no longer necessary.
+	cube_temporary:Destroy()
 
 	if error_message == nil then
 		cube_cache[snapped] = true
