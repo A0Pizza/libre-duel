@@ -4,6 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local cube = ReplicatedStorage.Cube
 local cube_cache = require(ReplicatedStorage.modules.cube_cache)
 local cube_size = require(ReplicatedStorage.modules.cube_size)
+local debug_print = require(script.Parent.debug_print)
 local get_player_position = require(ReplicatedStorage.modules.get_player_position)
 local player_range = require(ReplicatedStorage.modules.player_range)
 local play_sound_local = require(script.Parent.play_sound_local)
@@ -36,11 +37,13 @@ end
 
 local function place_cube(): ()
 	if local_mouse.Target == nil then
+		debug_print("Mouse target is missing.")
 		return
 	end
 
 	local local_position = get_player_position(local_player)
 	if local_position == nil then
+		debug_print("Local position is missing.")
 		return
 	end
 
@@ -48,6 +51,7 @@ local function place_cube(): ()
 
 	local distance = (hit_position - local_position).Magnitude
 	if distance > player_range then
+		debug_print("Too far.")
 		return
 	end
 
@@ -56,6 +60,7 @@ local function place_cube(): ()
 
 	local occupied = cube_cache[snapped]
 	if occupied then
+		debug_print("Occupied.")
 		return
 	end
 
