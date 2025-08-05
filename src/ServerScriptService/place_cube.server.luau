@@ -50,7 +50,7 @@ local function on_invoke(player: Player, cube_position: unknown): string?
 	local clone = cube:Clone()
 	clone.Position = cube_position
 	clone.Parent = workspace
-	play_sound_excluding(player, "block_place", cube_position)
+	play_sound_excluding(player, "cube_place", cube_position)
 
 	return
 end

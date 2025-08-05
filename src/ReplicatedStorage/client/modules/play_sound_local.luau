@@ -1,5 +1,5 @@
 local sounds = {
-    block_place = {2164165859, 6586979979}, --multiple sounds can be added for variety
+    cube_place = {2164165859, 6586979979}, --multiple sounds can be added for variety
     player_damaged = {6586979979},
 }
 --[[

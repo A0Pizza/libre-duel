@@ -58,14 +58,14 @@ local function place_cube(): ()
 		return
 	end
 
-	play_sound_local("block_place", snapped)
+	play_sound_local("cube_place", snapped)
 
 	local error_message: string? = ReplicatedStorage.remotes.place_cube:InvokeServer(snapped)
 
 	if error_message == nil then
 		cube_cache[snapped] = true
 	else
-		print(`Failed to place block. Reason: {error_message}`)
+		print(`Failed to place cube. Reason: {error_message}`)
 	end
 end
 

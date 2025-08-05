@@ -171,7 +171,7 @@ Link: https://create.roblox.com/store/asset/2164165859
 
 
 
-Used for: Block placed  
+Used for: Cube placed  
 Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
 
 #### cartoon_pop
