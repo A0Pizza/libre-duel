@@ -65,15 +65,13 @@ local function place_cube(): ()
 
 	play_sound_local("cube_place", snapped)
 
-	local error_message: string? = ReplicatedStorage.remotes.place_cube:InvokeServer(snapped)
+	local success: boolean = ReplicatedStorage.remotes.place_cube:InvokeServer(snapped)
 
 	-- Whether the server accepts or rejects the cube, this local one is no longer necessary.
 	cube_temporary:Destroy()
 
-	if error_message == nil then
+	if success then
 		cube_cache[snapped] = true
-	else
-		print(`Failed to place cube. Reason: {error_message}`)
 	end
 end
 
