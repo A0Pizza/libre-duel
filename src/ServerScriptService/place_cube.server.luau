@@ -3,6 +3,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local cube = ReplicatedStorage.Cube
 local cube_cache = require(ReplicatedStorage.modules.cube_cache)
+local cube_in_hitbox = require(ReplicatedStorage.modules.cube_in_hitbox)
 local debug_print = require(script.Parent.modules.debug_print)
 local get_player_position = require(ReplicatedStorage.modules.get_player_position)
 local player_range_server = require(ServerScriptService.modules.player_range_server)
@@ -44,9 +45,15 @@ local function on_invoke(player: Player, cube_position: unknown): boolean
 		return false
 	end
 
-	local occupied = cube_cache[cube_position]
-	if occupied then
-		debug_print("Occupied.")
+	local occupied_cube = cube_cache[cube_position]
+	if occupied_cube then
+		debug_print("Occupied by cube.")
+		return false
+	end
+
+	local occupied_player = cube_in_hitbox(cube_position)
+	if occupied_player then
+		debug_print("Occupied by player.")
 		return false
 	end
 

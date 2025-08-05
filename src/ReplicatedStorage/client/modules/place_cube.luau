@@ -3,6 +3,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local cube = ReplicatedStorage.Cube
 local cube_cache = require(ReplicatedStorage.modules.cube_cache)
+local cube_in_hitbox = require(ReplicatedStorage.modules.cube_in_hitbox)
 local cube_size = require(ReplicatedStorage.modules.cube_size)
 local debug_print = require(script.Parent.debug_print)
 local get_player_position = require(ReplicatedStorage.modules.get_player_position)
@@ -58,9 +59,15 @@ local function place_cube(): ()
 	local offset = surface_offset[local_mouse.TargetSurface]
 	local snapped = snap_position(hit_position + offset)
 
-	local occupied = cube_cache[snapped]
-	if occupied then
-		debug_print("Occupied.")
+	local occupied_cube = cube_cache[snapped]
+	if occupied_cube then
+		debug_print("Occupied by cube.")
+		return
+	end
+
+	local occupied_player = cube_in_hitbox(snapped)
+	if occupied_player then
+		debug_print("Occupied by player.")
 		return
 	end
 
