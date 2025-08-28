@@ -73,7 +73,7 @@ local function player_card(props: {
 	)
 end
 
-local function use_players()
+local function use_players(): {Player}
 	local players, set_players = use_state(Players:GetPlayers())
 
 	use_effect(function()
@@ -125,7 +125,7 @@ local function player_list()
 	)
 end
 
-local function use_ping()
+local function use_ping(): number
 	local ping, set_ping = use_state(0)
 
 	use_effect(function()
