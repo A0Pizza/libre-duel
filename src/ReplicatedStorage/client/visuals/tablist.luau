@@ -209,7 +209,6 @@ local function tablist()
 		Enabled = enabled,
 		Name = "Tablist",
 		ResetOnSpawn = false,
-		ScreenInsets = "None",
 	},
 		create_element("Frame", {
 			AnchorPoint = Vector2.new(0.5, 0),
