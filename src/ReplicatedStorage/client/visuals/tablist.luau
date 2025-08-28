@@ -38,19 +38,19 @@ local function player_card(props: {
 		TextXAlignment = "Left",
 		Text = props.name,
 	},
-		create_element("UIPadding",{
+		create_element("UIPadding", {
 			PaddingLeft = UDim.new(0, 40),
 			PaddingRight = UDim.new(0, 5),
 		}),
-		create_element("UICorner",{
+		create_element("UICorner", {
 			CornerRadius = UDim.new(0, 50),
 		}),
-		create_element("UIStroke",{
+		create_element("UIStroke", {
 			Color = Color3.fromRGB(255, 255, 255),
 			ApplyStrokeMode = "Border",
 			Thickness = 2,
 		},
-			create_element("UIGradient",{
+			create_element("UIGradient", {
 				Color = ColorSequence.new({
 					ColorSequenceKeypoint.new(0, props.colour),
 					ColorSequenceKeypoint.new(1, Color3.fromRGB(70, 70, 70)),
@@ -58,13 +58,13 @@ local function player_card(props: {
 				Rotation = -90,
 			})
 		),
-		create_element("ImageLabel",{
+		create_element("ImageLabel", {
 			Position = UDim2.fromOffset(-40, 0),
 			BackgroundTransparency = 1,
 			Size = UDim2.fromOffset(38, 38),
 			Image = props.image,
 		},
-			create_element("UICorner",{
+			create_element("UICorner", {
 				CornerRadius = UDim.new(1, 0),
 			})
 		)
@@ -180,21 +180,21 @@ local function tablist()
 			BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 			BackgroundTransparency = 0.5,
 		},
-			create_element("UICorner",{
+			create_element("UICorner", {
 				CornerRadius = UDim.new(0, 30),
 			}),
-			create_element("UIPadding",{
+			create_element("UIPadding", {
 				PaddingBottom = UDim.new(0, 40),
 				PaddingLeft = UDim.new(0, 10),
 				PaddingRight = UDim.new(0, 10),
 				PaddingTop = UDim.new(0, 40),
 			}),
-			create_element("UIStroke",{
+			create_element("UIStroke", {
 				Thickness = 2,
 				Color = Color3.fromRGB(255, 255, 255),
 				ApplyStrokeMode = "Border",
 			},
-				create_element("UIGradient",{
+				create_element("UIGradient", {
 					Color = ColorSequence.new({
 						ColorSequenceKeypoint.new(0, Color3.fromRGB(134, 134, 134)),
 						ColorSequenceKeypoint.new(1, Color3.fromRGB(70, 70, 70)),
