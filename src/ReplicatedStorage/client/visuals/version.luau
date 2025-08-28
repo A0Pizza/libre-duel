@@ -8,7 +8,8 @@ local function main()
 	return create_element(
 		"ScreenGui",
 		{
-			Name = "Version"
+			Name = "Version",
+			ResetOnSpawn = false,
 		},
 		create_element(
 			"TextLabel",

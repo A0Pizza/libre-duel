@@ -208,6 +208,7 @@ local function tablist()
 	return create_element("ScreenGui", {
 		Enabled = enabled,
 		Name = "Tablist",
+		ResetOnSpawn = false,
 		ScreenInsets = "None",
 	},
 		create_element("Frame", {
