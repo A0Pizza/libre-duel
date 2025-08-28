@@ -1,5 +1,19 @@
 # <img src="./images/icon_small.svg" alt="Libre Duel icon" width="30"/> Libre Duel
 
+## Table of Contents
+
+- [Purpose](#purpose)
+- [Contributing](#contributing)
+	- [Setup the environment](#setup-the-environment)
+	- [Add a feature](#add-a-feature)
+	- [Development guidelines](#development-guidelines)
+	- [Style](#style)
+- [Credits](#credits)
+	- [Assets](#assets)
+- [License](#license)
+
+## Purpose
+
 Libre Duel was originally conceived because there were several features that Breter and I thought could really benefit Bridge Duel, but the owner refused to add. The earliest record I have of this is on 2025 June 27, though I think the actual conception date was probably around a month earlier.
 
 I also realised it would be a good idea because I love [FOSS](<https://opensource.org/osd>).
@@ -10,10 +24,171 @@ When Bridge Duel got taken down, a new reason emerged: Libre Duel would now be t
 
 Join our Revolt server [here](<https://rvlt.gg/p4azhCRE>)
 
-## Development
+## Contributing
 
-See: <https://github.com/EliTheGingerCat/roblox-build-tools?tab=readme-ov-file#only-for-me>
+### Setup the environment
+
+Here is a guide to prepare everything to start contributing. It assumes you know NOTHING.
+
+Similar to the scientific method, it is optimal to read through all the instructions before beginning.
+
+Feel free to ask for help on the Revolt server!
+
+1. Fork this repository on GitHub. In the fork options, unselect this option: Copy the `main` branch only
+1. Install [Git](https://git-scm.com/).
+3. Open up a terminal.
+4. Using the `cd` command, change working directory into a folder in which you want to store the `libre-duel` repository. The repository will soon be a *child* of this folder.
+
+Let us follow an example in which someone wants to store the repository in a directory called `projects`. The `projects` directory is in their home directory (`~`). Thus, they run `cd ~/projects`.
+
+New term: USER = Your GitHub username.
+
+5. Clone your fork. This can be done with `git clone https://github.com/USER/libre-duel.git`. Notice the use of "USER", which represents your GitHub username.
+6. Let Git do its thing.
+
+You now have a local copy of the `libre-duel` repository. It is all stored in a directory. In the example, this directory would be `~/projects/libre-duel`.
+
+7. Run `git clone https://github.com/EliTheGingerCat/roblox-build-tools.git`.
+8. Let Git do its thing.
+
+You now have a local copy of the `roblox-build-tools` repository.
+
+It is a *sibling* of `libre-duel. That is, they both share the same parent.
+
+Consider this diagram:
+
+```
+> ~
+--> projects
+----> libre-duel
+----> roblox-build-tools
+```
+
+9. Enter the `libre-duel` repository with `cd libre-duel`.
+10. Install [Rokit](https://github.com/rojo-rbx/rokit).
+11. Run `rokit install`.
+
+You now have [Lune](https://lune-org.github.io/docs/) and [Rojo](https://rojo.space/).
+
+Optional: Run `lune list` to see the available scripts. Only `build` and `syncback` will be of value. You can run:
+- `lune run build`: Build the Roblox Place into `./libre-duel.rbxl`.
+- `lune run syncback`: Sync ServerStorage and Workspace into the filesystem. ⚠️ This is buggy and may need to be run multiple times. I will try to fix it.
+
+Question: How do I know I can trust all this?  
+Answer: This is not something that really belongs in this README. If you want, we can talk about it in the Revolt server.
+
+### Add a feature
+
+This guide should be followed everytime you want to add a new feature or fix a bug.
+
+This guide adheres to git-flow, as mentioned below.
+
+1. Make sure your local repository is up to date. This comes in two parts:
+	1. Make sure your fork on GitHub is up to date. This can be done by going to the page, on <https://github.com/USER/libre-duel/tree/develop>, and clicking the Sync button.
+	2. Pull in any changes in your local repository. On the commandline, enter the folder that contains your local reposiotry via the `cd` command, then run `git pull`.
+2. Checkout the `develop` branch with `git checkout develop`.
+3. Make a new branch.
+
+The branch name is not so important as long as it concisely describes the branch purpose. Personally, I follow some rules for it, which you can follow too if you want.
+
+My branch names essentially come in two parts, `type` and `name`, and take the form of `{type}-{name}`.
+
+If the change I am making is a new feature, then `type = "feature"`. If the change is fixing a problem, then `type = "fix"`. There are other types of changes one may make, but I would probably just pick whichever one makes the most sense. Most changes are `feature`. [One time](https://github.com/evaera/moonwave/pull/171) I used `type = "docs"` but I would not do it anymore.
+
+As for `name`, I just describe the feature as concise as possible. I use 2 to 4 words. Sometimes I use imperative tense, sometimes it is just a compound noun.
+
+The whole branch is in `kebab-case`.
+
+For example, a branch that I [used](https://github.com/EliTheGingerCat/libre-duel/commit/5471a8e32c51b2449ebae025dcecc544c29a110f) for this repository is `feature-melee-attack`.
+
+Anyway, let your branch name be `BRANCH_NAME`. You would make a new branch with `git branch BRANCH_NAME`.
+
+4. Checkout your new branch with `git checkout BRANCH_NAME`.
+
+It is possible to do steps 3 and 4 in one command with `git checkout -b BRANCH_NAME`, but personally, I like doing each action separately.
+
+5. Work on your branch.
+
+First, make changes. Make sure to follow the [code style](#style).
+
+Then, you can stage all changes with `git add -A`.
+
+Then, commit the changes with `git commit`. Let your commit message be `COMMIT_MESSAGE`. You could use `git commit -m 'COMMIT_MESSAGE'`, but I prefer using the file (`COMMIT_EDITMSG`) that pops up without the `-m` flag. In my editor, Visual Studio Code, there are two vertical lines that appear in the file that make it easy for me to follow column limits. The first line should be at most 50 characters long, and every other line should be at most 72 characters long. Some stuff, like hyperlinks or commit ids, go over this limit; they should be placed on their own line (while still going over the limit since it would be weird to break them up into pieces).
+
+Repeat this until your work is done.
+
+6. Push the branch upstream with `git push -u origin HEAD`. (There are two assumptipns here: that your remote is called "origin" and that you are currently checked out on the branch you are working on (since "HEAD" is used).)
+
+7. The terminal will output a link to use to make a pull request. Use that link. Write a good title and description for your pull request.
+
+8. I, EliTheGingerCat, will review your code.
+
+If it gets approved, then I will merge it. You are done!
+
+If I request changes, then you will probably need to work on the branch more, though I often apply these changes on my own. If you want to apply the changes, then you can follow step 5 again. When you are done, you can just run `git push`. (I am pretty sure this pushes all local commits in your repository. If you only want to push commits in the branch you are working on, then I am pretty sure the command is `git push origin BRANCH_NAME`.)
+
+Thank you for contributing to Libre Duel!
+
+### Development guidelines
+
+See: <https://github.com/EliTheGingerCat/roblox-build-tools?tab=readme-ov-file#only-for-me>  
+This is covered in the guide above.
 
 Though, I am going to have to come up with an actual solution for this since this project has a decent chance of receiving contributions from random people.
 
-I want to follow this: <https://nvie.com/posts/a-successful-git-branching-model/>
+I want to follow git-flow: <https://nvie.com/posts/a-successful-git-branching-model/>
+
+Personally, I follow Conventional Commits: https://www.conventionalcommits.org/en/v1.0.0/
+
+Also see: https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
+
+This project does not follow Semantic Versioning since I do not see how it could be applied to video games. However, it *does* keep a [changelog](./CHANGELOG.md).
+
+### Style
+
+- Add a trailing newline to text files.
+- Use trailing commas in code.
+- Use `snake_case`.
+- Place all requires in the same spot.
+- Order requires alphabetically.
+
+## Credits
+
+Libre Duel is developed by [@EliTheGingerCat](https://github.com/EliTheGingerCat) and [@coolpeter98](https://github.com/coolpeter98).
+
+It also had contributions from:
+- [@Austriaaa](https://github.com/Austriaaa/)
+
+### Assets
+
+It also uses some assets:
+
+#### Half Life 2 Grenade Tick
+
+Author: [@the1oler](https://www.roblox.com/users/87456522/profile)  
+Type: Sound effect  
+Link: https://create.roblox.com/store/asset/2164165859
+
+
+
+Used for: Cube placed  
+Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
+
+#### cartoon_pop
+
+Author: [@Schnogrind](https://www.roblox.com/users/52134822/profile)  
+Type: Sound effect  
+Link: https://create.roblox.com/store/asset/6586979979
+
+
+
+Used for: Nothing yet, but will be used for player damaged.  
+Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
+
+# License
+
+Libre Duel is licensed under the MIT License. See [`LICENSE.txt`](./LICENSE.txt). This license does not even need a summary.
+
+Yes, you are allowed to republish the game exactly and profit off of it!
+
+However, as the license says, attribution is necessary, preferably in the game description. Could also be in an in-game menu, on a website, et cetera. As long as it is easily visible.
