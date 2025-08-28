@@ -71,23 +71,44 @@ local function player_card(props: {
 	)
 end
 
-local function player_list(props: {
-	cards: {
-		{
-			colour: Color3,
-			id: number,
-			image: string,
-			name: string,
-		}
-	}
-})
+local function use_players()
+	local players, set_players = use_state(Players:GetPlayers())
+
+	use_effect(function()
+		local function on_player_list_change(player: Player): ()
+			set_players(Players:GetPlayers())
+		end
+
+		local connection_added = Players.PlayerAdded:Connect(on_player_list_change)
+		local connection_removed = Players.PlayerRemoving:Connect(on_player_list_change)
+
+		local function destroy()
+			connection_added:Disconnect()
+			connection_removed:Disconnect()
+		end
+		
+		return destroy
+	end, {})
+
+	return players
+end
+
+local colours = {
+	blue = Color3.fromRGB(13, 162, 221),
+	gray = Color3.fromRGB(201, 201, 201),
+	red = Color3.fromRGB(177, 76, 78),
+}
+
+local function player_list()
+	local players = use_players()
+
 	local cards = {}
-	for index, card in props.cards do
+	for index, player in players do
 		cards[index] = create_element(player_card, {
-			key = card.id,
-			colour = card.colour,
-			image = card.image,
-			name = card.name
+			key = player.UserId,
+			colour = colours.gray,
+			image = `rbxthumb://type=AvatarBust&id={player.UserId}&w=50&h=50`,
+			name = player.Name
 		})
 	end
 
@@ -101,27 +122,6 @@ local function player_list(props: {
 		cards
 	)
 end
-
-local PLAYERS = {
-	{
-		colour = Color3.fromRGB(177, 76, 78),
-		id = 1,
-		image = "rbxassetid://94738928346033",
-		name = "Player1",
-	},
-	{
-		colour = Color3.fromRGB(13, 162, 221),
-		id = 2,
-		image = "rbxassetid://94738928346033",
-		name = "Player2",
-	},
-	{
-		colour = Color3.fromRGB(201, 201, 201),
-		id = 3,
-		image = "rbxassetid://94738928346033",
-		name = "Player3",
-	},
-}
 
 local function use_ping()
 	local ping, set_ping = use_state(0)
@@ -203,9 +203,7 @@ local function tablist()
 				})
 			),
 			create_element(title),
-			create_element(player_list, {
-				cards = PLAYERS
-			}),
+			create_element(player_list),
 			create_element(location),
 			create_element(ping_display)
 		)
