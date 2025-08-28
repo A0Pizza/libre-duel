@@ -171,6 +171,7 @@ local function location()
 	})
 end
 
+-- `key` must be constant.
 local function use_if_key_held(key: Enum.KeyCode): boolean
 	local held, set_held = use_state(UserInputService:IsKeyDown(key))
 
@@ -197,7 +198,7 @@ local function use_if_key_held(key: Enum.KeyCode): boolean
 		end
 
 		return destroy
-	end, {key})
+	end, {}) -- Zero dependencies since `key` is constant.
 
 	return held
 end
