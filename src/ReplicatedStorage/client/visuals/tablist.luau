@@ -1,8 +1,13 @@
+local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
 
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
 
 local create_element = React.createElement
+local local_player = Players.LocalPlayer
+local use_effect = React.useEffect
+local use_state = React.useState
 
 local function title()
 	return create_element("TextLabel", {
@@ -118,7 +123,29 @@ local PLAYERS = {
 	},
 }
 
-local function ping()
+local function use_ping()
+	local ping, set_ping = use_state(0)
+
+	use_effect(function()
+		local function on_heartbeat()
+			set_ping(local_player:GetNetworkPing())
+		end
+
+		local connection = RunService.Heartbeat:Connect(on_heartbeat)
+
+		local function destroy()
+			connection:Disconnect()
+		end
+
+		return destroy
+	end, {})
+
+	return ping
+end
+
+local function ping_display()
+	local ping = use_ping()
+
 	return create_element("TextLabel", {
 		BackgroundTransparency = 1,
 		Position = UDim2.fromScale(0.5, 1),
@@ -126,7 +153,7 @@ local function ping()
 		TextColor3 = Color3.fromRGB(133, 221, 50),
 		TextSize = 40,
 		Size = UDim2.new(0.5, 0, 0, 40),
-		Text = "Ping: 60ms",
+		Text = `Ping: {math.round(ping * 1000)} ms`,
 	})
 end
 
@@ -180,7 +207,7 @@ local function tablist()
 				cards = PLAYERS
 			}),
 			create_element(location),
-			create_element(ping)
+			create_element(ping_display)
 		)
 	)
 end
