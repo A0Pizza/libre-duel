@@ -1,7 +1,9 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
 
+local keybinds = require(ReplicatedStorage.client.modules.keybinds)
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
 
 local create_element = React.createElement
@@ -169,8 +171,42 @@ local function location()
 	})
 end
 
+local function use_if_key_held(key: Enum.KeyCode): boolean
+	local held, set_held = use_state(UserInputService:IsKeyDown(key))
+
+	use_effect(function()
+		local function on_input_began(input: InputObject): ()
+			if input.KeyCode == key then
+				set_held(true)
+			end
+		end
+
+		local connection_began = UserInputService.InputBegan:Connect(on_input_began)
+
+		local function on_input_ended(input: InputObject): ()
+			if input.KeyCode == key then
+				set_held(false)
+			end
+		end
+
+		local connection_ended = UserInputService.InputEnded:Connect(on_input_ended)
+
+		local function destroy()
+			connection_began:Disconnect()
+			connection_ended:Disconnect()
+		end
+
+		return destroy
+	end, {key})
+
+	return held
+end
+
 local function tablist()
+	local enabled = use_if_key_held(keybinds.tablist)
+
 	return create_element("ScreenGui", {
+		Enabled = enabled,
 		ScreenInsets = "None",
 	},
 		create_element("Frame", {
