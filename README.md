@@ -177,7 +177,7 @@ The following are external projects and assets that Libre Duel uses.
 
 ### IPinfo
 
-Type: Website  
+Type: Application programming interface  
 Link: <https://ipinfo.io/>  
 License: [CC BY-SA 4.0](<https://creativecommons.org/licenses/by-sa/4.0/>)
 
