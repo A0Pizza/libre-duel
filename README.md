@@ -173,6 +173,8 @@ Libre Duel is developed by [@EliTheGingerCat](https://github.com/EliTheGingerCat
 It also has contributions from:
 - [@Austriaaa](https://github.com/Austriaaa/)
 
+The following are external projects and assets that Libre Duel uses.
+
 ### IPinfo
 
 Type: Website  
@@ -182,11 +184,7 @@ License: [CC BY-SA 4.0](<https://creativecommons.org/licenses/by-sa/4.0/>)
 Used for: Retrieving Roblox server location.  
 Relevant files: [`IPinfo.luau`](./src/ServerScriptService/modules/IPinfo.luau), [`server_location.server.luau`](./src/ServerScriptService/server_location.server.luau)
 
-### Assets
-
-It also uses some assets:
-
-#### Half Life 2 Grenade Tick
+### Half Life 2 Grenade Tick
 
 Author: [@the1oler](https://www.roblox.com/users/87456522/profile)  
 Type: Sound effect  
@@ -195,7 +193,7 @@ Link: https://create.roblox.com/store/asset/2164165859
 Used for: Cube placed  
 Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
 
-#### cartoon_pop
+### cartoon_pop
 
 Author: [@Schnogrind](https://www.roblox.com/users/52134822/profile)  
 Type: Sound effect  
