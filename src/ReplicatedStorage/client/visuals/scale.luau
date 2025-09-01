@@ -34,7 +34,7 @@ local function scale_element()
 	end, {})
 
 	return create_element("UIScale", {
-		Scale = scale
+		Scale = scale,
 	})
 end
 
