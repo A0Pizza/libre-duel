@@ -6,6 +6,7 @@ local UserInputService = game:GetService("UserInputService")
 local keybinds = require(ReplicatedStorage.client.modules.keybinds)
 local location_default = require(ReplicatedStorage.modules.location_default)
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
+local scale = require(script.Parent.scale)
 
 local create_element = React.createElement
 local local_player = Players.LocalPlayer
@@ -267,6 +268,7 @@ local function tablist()
 					Rotation = -90,
 				})
 			),
+			create_element(scale),
 			create_element(title),
 			create_element(player_list),
 			create_element(location_display),
