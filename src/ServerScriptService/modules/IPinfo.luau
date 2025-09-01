@@ -94,7 +94,7 @@ type data_Lite = {
 	country_code: string,
 	country: string,
 	continent_code: string,
-	continent: string
+	continent: string,
 }
 
 local function get_Lite(target: string?): data_Lite
