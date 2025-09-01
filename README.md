@@ -192,8 +192,6 @@ Author: [@the1oler](https://www.roblox.com/users/87456522/profile)
 Type: Sound effect  
 Link: https://create.roblox.com/store/asset/2164165859
 
-
-
 Used for: Cube placed  
 Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
 
@@ -202,8 +200,6 @@ Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/
 Author: [@Schnogrind](https://www.roblox.com/users/52134822/profile)  
 Type: Sound effect  
 Link: https://create.roblox.com/store/asset/6586979979
-
-
 
 Used for: Nothing yet, but will be used for player damaged.  
 Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
