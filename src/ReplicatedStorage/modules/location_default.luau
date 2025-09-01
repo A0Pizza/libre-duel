@@ -8,7 +8,7 @@ export type location = {
 }
 
 local location_default: location = {
-	status = "loading"
+	status = "loading",
 }
 
 return location_default

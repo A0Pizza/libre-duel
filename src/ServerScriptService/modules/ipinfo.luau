@@ -36,7 +36,7 @@ local function request_authorised(URL: string,  token: string): (boolean, HttpRe
 		Method = "GET",
 		Headers = {
 			Accept = "application/json",
-			Authorization = `Bearer {token}`
+			Authorization = `Bearer {token}`,
 		},
 	})
 end
