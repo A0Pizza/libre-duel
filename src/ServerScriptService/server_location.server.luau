@@ -36,7 +36,7 @@ local function get_server_location_Lite(): string?
 end
 
 local function get_token(): string?
-	local token_module = script.Parent.modules:FindFirstChild("ipinfo_token") :: ModuleScript?
+	local token_module = script.Parent.modules:FindFirstChild("IPinfo_token") :: ModuleScript?
 	if token_module ~= nil then
 		return require(token_module) :: string
 	end
