@@ -159,6 +159,15 @@ Libre Duel is developed by [@EliTheGingerCat](https://github.com/EliTheGingerCat
 It also had contributions from:
 - [@Austriaaa](https://github.com/Austriaaa/)
 
+### IPinfo
+
+Type: Website  
+Link: <https://ipinfo.io/>  
+License: [CC BY-SA 4.0](<https://creativecommons.org/licenses/by-sa/4.0/>)
+
+Used for: Retrieving Roblox server location.  
+Relevant files: [`IPinfo.luau`](./src/ServerScriptService/modules/IPinfo.luau), [`server_location.server.luau`](./src/ServerScriptService/server_location.server.luau)
+
 ### Assets
 
 It also uses some assets:

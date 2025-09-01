@@ -4,6 +4,7 @@ local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local keybinds = require(ReplicatedStorage.client.modules.keybinds)
+local location_default = require(ReplicatedStorage.modules.location_default)
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
 
 local create_element = React.createElement
@@ -159,7 +160,33 @@ local function ping_display()
 	})
 end
 
-local function location()
+local location_saved = location_default
+local function use_location(): location_default.location
+	local location, set_location = use_state(location_saved)
+
+	use_effect(function()
+		if location_saved.status == "loading" then
+			-- I know this is a side effect but Womp womp.
+			location_saved = ReplicatedStorage.remotes.server_location:InvokeServer()
+			set_location(location_saved)
+		end
+	end)
+
+	return location
+end
+
+local function location_display()
+	local location = use_location()
+
+	local location_text: string
+	if location.status == "loading" then
+		location_text = "Server location is loading."
+	elseif location.status == "fail" then
+		location_text = "Failed to fetch server location."
+	elseif location.status == "success" then
+		location_text = `Server location:\n{location.result}`
+	end
+
 	return create_element("TextLabel", {
 		BackgroundTransparency = 1,
 		Position = UDim2.fromScale(0, 1),
@@ -167,7 +194,7 @@ local function location()
 		TextColor3 = Color3.fromRGB(255, 255, 255),
 		TextSize = 40,
 		Size = UDim2.new(0.5, 0, 0, 40),
-		Text = "Paris, France",
+		Text = location_text,
 	})
 end
 
@@ -242,7 +269,7 @@ local function tablist()
 			),
 			create_element(title),
 			create_element(player_list),
-			create_element(location),
+			create_element(location_display),
 			create_element(ping_display)
 		)
 	)
