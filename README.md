@@ -170,7 +170,7 @@ return IPinfo_token
 
 Libre Duel is developed by [@EliTheGingerCat](https://github.com/EliTheGingerCat) and [@coolpeter98](https://github.com/coolpeter98).
 
-It also had contributions from:
+It also has contributions from:
 - [@Austriaaa](https://github.com/Austriaaa/)
 
 ### IPinfo
