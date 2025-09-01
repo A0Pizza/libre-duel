@@ -9,7 +9,6 @@
 	- [Development guidelines](#development-guidelines)
 	- [Style](#style)
 - [Credits](#credits)
-	- [Assets](#assets)
 - [License](#license)
 
 ## Purpose
