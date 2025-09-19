@@ -1,8 +1,12 @@
+local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
 
 local create_element = React.createElement
+local local_player = Players.LocalPlayer
+local use_effect = React.useEffect
+local use_state = React.useState
 
 local function slider_display(props: {
 	colour_background: Color3,
@@ -55,9 +59,110 @@ local function slider_display(props: {
 	)
 end
 
-local function health_main(props: {
-	health_main: number,
-})
+local function use_character(): Model?
+	local character, set_character = use_state(local_player.Character)
+
+	local function effect_character_formation()
+		local function on_character_added(character: Model): ()
+			set_character(character)
+		end
+
+		local connection_character_added = local_player.CharacterAdded:Connect(on_character_added)
+
+		local function on_character_removing(): ()
+			set_character(nil)
+		end
+
+		local connection_character_removing = local_player.CharacterRemoving:Connect(on_character_removing)
+
+		local function disconnect(): ()
+			connection_character_added:Disconnect()
+			connection_character_removing:Disconnect()
+		end
+
+		return disconnect
+	end
+
+	use_effect(effect_character_formation, {})
+
+	local function effect_character_destroying()
+		local connection_character_destroying: RBXScriptConnection?
+		if character ~= nil then
+			local function on_character_destroying(): ()
+				set_character(nil)
+			end
+
+			connection_character_destroying = character.Destroying:Connect(on_character_destroying)
+		else
+			connection_character_destroying = nil
+		end
+
+		local function disconnect()
+			if connection_character_destroying ~= nil then
+				connection_character_destroying:Disconnect()
+			end
+		end
+
+		return disconnect
+	end
+
+	use_effect(effect_character_destroying, {character})
+
+	return character
+end
+
+local function use_humanoid(): Humanoid?
+	local character = use_character()
+
+	if character == nil then
+		return nil
+	end
+
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	return humanoid
+end
+
+local function get_health_optional(humanoid: Humanoid?): number
+	if humanoid == nil then
+		return 0
+	end
+
+	return humanoid.Health
+end
+
+local function use_health_main(): number
+	local humanoid = use_humanoid()
+	local health_main, set_health_main = use_state(get_health_optional(humanoid))
+	
+	local function effect_health_main()
+		if humanoid == nil then
+			set_health_main(0)
+			return
+		end
+
+		set_health_main(humanoid.Health)
+
+		local function on_health_changed(health: number): ()
+			set_health_main(health)
+		end
+
+		local connection = humanoid.HealthChanged:Connect(on_health_changed)
+
+		local function disconnect(): ()
+			connection:Disconnect()
+		end
+
+		return disconnect
+	end
+
+	use_effect(effect_health_main, {humanoid})
+
+	return health_main
+end
+
+local function health_main()
+	local health_main = use_health_main()
+
 	local props_slider = {
 		colour_background = Color3.fromRGB(91, 43, 44),
 		colour_gradient = ColorSequence.new({
@@ -66,7 +171,7 @@ local function health_main(props: {
 		}),
 		colour_stroke = Color3.fromRGB(146, 60, 62),
 		fill_total = 100,
-		fill_value = props.health_main,
+		fill_value = health_main,
 		name = "health_main",
 		position_y_offset = -10,
 		size_x_scale = 1,
@@ -96,7 +201,6 @@ local function health_extra(props: {
 end
 
 local function health_bar(props: {
-	health_main: number,
 	health_extra: number,
 })
 	return create_element("Frame", {
@@ -104,9 +208,7 @@ local function health_bar(props: {
 		BackgroundTransparency = 1,
 		Size = UDim2.fromScale(1, 1),
 	},
-		create_element(health_main, {
-			health_main = props.health_main
-		}),
+		create_element(health_main),
 		create_element(health_extra, {
 			health_extra = props.health_extra
 		})
@@ -203,7 +305,6 @@ local function hotbar()
 				})
 			),
 			create_element(health_bar, {
-				health_main = 70,
 				health_extra = 10,
 			}),
 			create_element(slots_container)
