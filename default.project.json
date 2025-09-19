@@ -3,6 +3,13 @@
   "emitLegacyScripts": false,
   "tree": {
     "$className": "DataModel",
+
+    "HttpService": {
+      "$properties": {
+        "HttpEnabled": true
+      }
+    },
+
     "Lighting": {
       "$properties": {
         "Ambient": [
