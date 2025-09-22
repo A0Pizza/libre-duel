@@ -164,6 +164,7 @@ return IPinfo_token
 - Use `snake_case`.
 - Place all requires in the same spot.
 - Order requires alphabetically.
+- Use `Color3.new` over the other constructors (`fromHex`, `fromHSV`, `fromRGB`).
 
 ## Credits
 
