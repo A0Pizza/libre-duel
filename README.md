@@ -201,6 +201,14 @@ Link: https://create.roblox.com/store/asset/6586979979
 Used for: Nothing yet, but will be used for player damaged.  
 Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
 
+### Signal
+
+Authors: [@sleitnick](<https://github.com/Sleitnick>), [@stravant](<https://github.com/stravant>)  
+Type: Software  
+Link: <https://github.com/Sleitnick/RbxUtil/blob/main/modules/signal/init.luau>
+
+Used for: Signals.
+
 # License
 
 Libre Duel is licensed under the MIT License. See [`LICENSE.txt`](./LICENSE.txt). This license does not even need a summary.
