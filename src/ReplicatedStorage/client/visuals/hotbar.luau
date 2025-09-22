@@ -343,7 +343,7 @@ local function hotbar()
 			),
 			create_element(scale),
 			create_element(health_bar, {
-				health_extra = 10,
+				health_extra = 0,
 			}),
 			create_element(slots_container)
 		)
