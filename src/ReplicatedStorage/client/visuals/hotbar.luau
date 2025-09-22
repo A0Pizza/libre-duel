@@ -1,9 +1,9 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local UserInputService = game:GetService("UserInputService")
 
-local keybinds = require(script.Parent.Parent.modules.keybinds)
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
+local tool_state = require(script.Parent.Parent.modules.tool_state)
+local tools = require(script.Parent.Parent.modules.tools)
 
 local create_element = React.createElement
 local local_player = Players.LocalPlayer
@@ -235,6 +235,7 @@ end
 local function slot(props: {
 	active: boolean,
 	id: number,
+	text: string,
 })
 	return create_element("Frame", {
 		BackgroundColor3 = Color3.fromRGB(0, 0, 0),
@@ -243,6 +244,16 @@ local function slot(props: {
 		Size = UDim2.fromScale(1, 1),
 		LayoutOrder = props.id,
 	},
+		create_element("TextLabel", {
+			AnchorPoint = Vector2.new(0.5, 0.5),
+			BackgroundTransparency = 1,
+			Position = UDim2.fromScale(0.5, 0.5),
+			Size = UDim2.fromScale(0.8, 0.8),
+			Text = props.text,
+			TextColor3 = Color3.new(1, 1, 1),
+			TextScaled = true,
+			TextSize = 20,
+		}),
 		create_element("UIAspectRatioConstraint"),
 		create_element("UICorner", {
 			CornerRadius = UDim.new(0.45, 0),
@@ -251,16 +262,15 @@ local function slot(props: {
 	)
 end
 
--- `on_press` must be constant.
-local function use_button_pressed(keycode: Enum.KeyCode, on_press: () -> ()): ()
-	local function effect_button_pressed()
-		local function on_input_began(input: InputObject): ()
-			if input.KeyCode == keycode then
-				on_press()
-			end
+local function use_active_slot(): number
+	local active_slot, set_active_slot = use_state(tool_state.current)
+
+	local function effect_active_slot()
+		local function on_fire(slot: number): ()
+			set_active_slot(slot)
 		end
 
-		local connection = UserInputService.InputBegan:Connect(on_input_began)
+		local connection = tool_state.on_change:Connect(on_fire)
 
 		local function disconnect(): ()
 			connection:Disconnect()
@@ -269,61 +279,20 @@ local function use_button_pressed(keycode: Enum.KeyCode, on_press: () -> ()): ()
 		return disconnect
 	end
 
-	use_effect(effect_button_pressed, {keycode})
-end
+	use_effect(effect_active_slot, {})
 
-local function get_slot_id(keycode: Enum.KeyCode): number?
-	if keycode == keybinds.slot_1 then
-		return 1
-	elseif keycode == keybinds.slot_2 then
-		return 2
-	elseif keycode == keybinds.slot_3 then
-		return 3
-	elseif keycode == keybinds.slot_4 then
-		return 4
-	elseif keycode == keybinds.slot_5 then
-		return 5
-	elseif keycode == keybinds.slot_6 then
-		return 6
-	elseif keycode == keybinds.slot_7 then
-		return 7
-	elseif keycode == keybinds.slot_8 then
-		return 8
-	elseif keycode == keybinds.slot_9 then
-		return 9
-	else
-		return nil
-	end
+	return active_slot
 end
 
 local function slots_container()
-	local slot_active, set_slot_active = use_state(1)
-
-	local function add_key_listener(keycode: Enum.KeyCode): ()
-		local function on_pressed()
-			local slot_id = get_slot_id(keycode)
-			assert(slot_id ~= nil, `Keycode "{keycode.Name}" is not binded to a slot.`)
-			set_slot_active(slot_id)
-		end
-		use_button_pressed(keycode, on_pressed)
-	end
-
-	-- TODO: make keybinds reactive.
-	add_key_listener(keybinds.slot_1)
-	add_key_listener(keybinds.slot_2)
-	add_key_listener(keybinds.slot_3)
-	add_key_listener(keybinds.slot_4)
-	add_key_listener(keybinds.slot_5)
-	add_key_listener(keybinds.slot_6)
-	add_key_listener(keybinds.slot_7)
-	add_key_listener(keybinds.slot_8)
-	add_key_listener(keybinds.slot_9)
+	local active_slot = use_active_slot()
 
 	local slots = {}
 	for id = 1, 9 do
 		slots[id] = create_element(slot, {
-			active = id == slot_active,
+			active = id == active_slot,
 			id = id,
+			text = tools[id] :: string or "",
 		})
 	end
 
