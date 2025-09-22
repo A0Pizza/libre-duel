@@ -2,6 +2,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
+local scale = require(script.Parent.scale)
 local tool_state = require(script.Parent.Parent.modules.tool_state)
 local tools = require(script.Parent.Parent.modules.tools)
 
@@ -340,6 +341,7 @@ local function hotbar()
 					Rotation = -90,
 				})
 			),
+			create_element(scale),
 			create_element(health_bar, {
 				health_extra = 10,
 			}),
