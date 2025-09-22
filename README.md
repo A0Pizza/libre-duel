@@ -164,6 +164,7 @@ return IPinfo_token
 - Use `snake_case`.
 - Place all requires in the same spot.
 - Order requires alphabetically.
+- Use `Color3.new` over the other constructors (`fromHex`, `fromHSV`, `fromRGB`).
 
 ## Credits
 
@@ -200,6 +201,14 @@ Link: https://create.roblox.com/store/asset/6586979979
 
 Used for: Nothing yet, but will be used for player damaged.  
 Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
+
+### Signal
+
+Authors: [@sleitnick](<https://github.com/Sleitnick>), [@stravant](<https://github.com/stravant>)  
+Type: Software  
+Link: <https://github.com/Sleitnick/RbxUtil/blob/main/modules/signal/init.luau>
+
+Used for: Signals.
 
 # License
 
