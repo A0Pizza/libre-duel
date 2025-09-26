@@ -9,7 +9,6 @@
 	- [Development guidelines](#development-guidelines)
 	- [Style](#style)
 - [Credits](#credits)
-	- [Assets](#assets)
 - [License](#license)
 
 ## Purpose
@@ -144,6 +143,20 @@ Also see: https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
 
 This project does not follow Semantic Versioning since I do not see how it could be applied to video games. However, it *does* keep a [changelog](./CHANGELOG.md).
 
+One can add the file `./src/ServerScriptService/modules/IPinfo_token.luau`, though that only makes sense under all of the following conditions:
+- It is outside of a published Roblox game (otherwise, one can use [Secrets](<https://create.roblox.com/docs/cloud-services/secrets>)).
+- One wants to use the [IPinfo Lite](<https://ipinfo.io/lite>) API (which is worse because it does not provide city).
+
+(The file is ignored by Git (so that API tokens are not logged to the repository).)
+
+The file should look like this:
+
+```luau
+local IPinfo_token = "[TOKEN HERE]"
+
+return IPinfo_token
+```
+
 ### Style
 
 - Add a trailing newline to text files.
@@ -151,39 +164,51 @@ This project does not follow Semantic Versioning since I do not see how it could
 - Use `snake_case`.
 - Place all requires in the same spot.
 - Order requires alphabetically.
+- Use `Color3.new` over the other constructors (`fromHex`, `fromHSV`, `fromRGB`).
 
 ## Credits
 
 Libre Duel is developed by [@EliTheGingerCat](https://github.com/EliTheGingerCat) and [@coolpeter98](https://github.com/coolpeter98).
 
-It also had contributions from:
+It also has contributions from:
 - [@Austriaaa](https://github.com/Austriaaa/)
 
-### Assets
+The following are external projects and assets that Libre Duel uses.
 
-It also uses some assets:
+### IPinfo
 
-#### Half Life 2 Grenade Tick
+Type: Application programming interface  
+Link: <https://ipinfo.io/>  
+License: [CC BY-SA 4.0](<https://creativecommons.org/licenses/by-sa/4.0/>)
+
+Used for: Retrieving Roblox server location.  
+Relevant files: [`IPinfo.luau`](./src/ServerScriptService/modules/IPinfo.luau), [`server_location.server.luau`](./src/ServerScriptService/server_location.server.luau)
+
+### Half Life 2 Grenade Tick
 
 Author: [@the1oler](https://www.roblox.com/users/87456522/profile)  
 Type: Sound effect  
 Link: https://create.roblox.com/store/asset/2164165859
 
-
-
 Used for: Cube placed  
 Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
 
-#### cartoon_pop
+### cartoon_pop
 
 Author: [@Schnogrind](https://www.roblox.com/users/52134822/profile)  
 Type: Sound effect  
 Link: https://create.roblox.com/store/asset/6586979979
 
-
-
 Used for: Nothing yet, but will be used for player damaged.  
 Relvant files: [`play_sound_local.luau`](./src/ReplicatedStorage/client/modules/play_sound_local.luau)
+
+### Signal
+
+Authors: [@sleitnick](<https://github.com/Sleitnick>), [@stravant](<https://github.com/stravant>)  
+Type: Software  
+Link: <https://github.com/Sleitnick/RbxUtil/blob/main/modules/signal/init.luau>
+
+Used for: Signals.
 
 # License
 
