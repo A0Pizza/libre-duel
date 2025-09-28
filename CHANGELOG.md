@@ -9,3 +9,11 @@ This project does **not** adhere to [Semantic Versioning](https://semver.org/spe
 ## [Unreleased]
 
 ### Added
+
+- Melee attacking.
+- Cube placing.
+- Version text in the bottom left.
+- Local and server debug printing.
+- Development guides.
+- Notifications.
+- Colour guide.
