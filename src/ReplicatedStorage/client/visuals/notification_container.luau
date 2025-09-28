@@ -1,15 +1,4 @@
 --[[
-COLOR THEME:
-- Success, Green: #85dd32
-- Error,,boxing, Red: #ff6464  
-- Info?, Blue: #0da2dd -- could be success like in bridge duel
-- Orange : #e67e22 
-- Purple (basic fight colour): #9b59b6
-- Red Team: #ff6464  --change these later if you want
-- Blue Team: #0da2dd 
-- White: #ffffff -- was info in bridge duel
-- document more colours here for consistency
-
 example of how to use it:
 local notification_system = require(ReplicatedStorage.client.modules.notification_system)
 notification_system.show("success message", "#85dd32")
