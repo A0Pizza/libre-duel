@@ -9,9 +9,47 @@ type notification = notification_management.notification
 local use_effect = React.useEffect
 local use_state = React.useState
 
-local NOTIFICATION_LIFETIME = 3
-local FADE_START_TIME = 2.7
-local FADE_DURATION = 0.3
+local lifetime_until_fade = 3
+local fade_duration = 0.5
+local lifetime_total = lifetime_until_fade + fade_duration
+
+local function use_fade_out(created_at: number): number
+	local transparency, set_transparency = use_state(0)
+	
+	local function effect_fade_out()
+		local time_since_creation = tick() - created_at
+		local time_until_fade = lifetime_until_fade - time_since_creation
+		
+		local function thread_fade(): ()
+			local time_since_start_fading = 0
+
+			if time_until_fade > 0 then
+				local time_waited = task.wait(time_until_fade)
+				time_since_start_fading += time_waited
+			end
+
+			while true do
+				local new_transparency = time_since_start_fading / fade_duration
+				set_transparency(new_transparency)
+
+				local time_waited = task.wait()
+				time_since_start_fading += time_waited
+			end
+		end
+
+		local task_fade = task.spawn(thread_fade)
+		
+		local function disconnect(): ()
+			task.cancel(task_fade)
+		end
+
+		return disconnect
+	end
+	
+	use_effect(effect_fade_out, {})
+
+	return transparency
+end
 
 local function notification_component(props: {
 	notification: notification,
@@ -20,31 +58,7 @@ local function notification_component(props: {
 	local notification = props.notification
 	local index = props.index
 	
-	local transparency, set_transparency = React.useState(0)
-	
-	React.useEffect(function()
-		local time_since_creation = tick() - notification.created_at
-		local time_until_fade = FADE_START_TIME - time_since_creation
-		
-		local fade_task = task.spawn(function()
-			if time_until_fade > 0 then
-				task.wait(time_until_fade)
-			end
-			
-			local fade_steps = 15
-			local step_duration = FADE_DURATION / fade_steps
-			
-			for i = 1, fade_steps do
-				local alpha = i / fade_steps
-				set_transparency(alpha)
-				task.wait(step_duration)
-			end
-		end)
-		
-		return function()
-			task.cancel(fade_task)
-		end
-	end, {notification.id})
+	local transparency = use_fade_out(notification.created_at)
 	
 	return create_element("Frame", {
 		Size = UDim2.new(1, 0, 0, 26), -- Slightly bigger from 22 to 26
@@ -145,7 +159,7 @@ local function cleanup_notifications(): ()
 	local current_time = tick()
 
 	for index, notification in notification_management.existing do
-		if current_time - notification.created_at >= NOTIFICATION_LIFETIME then
+		if current_time - notification.created_at >= lifetime_total then
 			notification_management.remove(index)
 		end
 	end
