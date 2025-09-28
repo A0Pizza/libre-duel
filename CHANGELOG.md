@@ -9,12 +9,3 @@ This project does **not** adhere to [Semantic Versioning](https://semver.org/spe
 ## [Unreleased]
 
 ### Added
-
-**Notification System**
-example of how to use it:
-
-local notification_system = require(ReplicatedStorage.client.modules.notification_system)
-
-notification_system.show("success message", "#85dd32")
-
-notification_system.show("player", "#0da2dd", " was killed by ", "#ffffff", "oTillyy", "#b14c4e")
