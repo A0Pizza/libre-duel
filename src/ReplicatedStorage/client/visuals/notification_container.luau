@@ -17,27 +17,24 @@ notification_system.show("player", "#0da2dd", " was killed by ", "#ffffff", "oTi
 --]]
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 
+local notification_management = require(script.Parent.Parent.modules.notification_management)
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
-local ReactRoblox = require(ReplicatedStorage.vendor.ReactLua.ReactRoblox)
 
 local create_element = React.createElement
-
-local player = Players.LocalPlayer
-local player_gui = player:WaitForChild("PlayerGui")
-
-local notification_system = {}
-
-local notifications = {}
-local set_notifications = nil
-local next_id = 0
+type notification = notification_management.notification
+local use_effect = React.useEffect
+local use_state = React.useState
 
 local NOTIFICATION_LIFETIME = 3
 local FADE_START_TIME = 2.7
 local FADE_DURATION = 0.3
 
-local function notification_component(props)
+local function notification_component(props: {
+	notification: notification,
+	index: number,
+})
 	local notification = props.notification
 	local index = props.index
 	
@@ -117,31 +114,43 @@ local function notification_component(props)
 			TextTransparency = transparency,
 			RichText = true,
 		}),
-	})
+	} :: {any})
+end
+
+local function use_notifications(): {notification}
+	local notifications, set_notifications = use_state({} :: {notification})
+
+	local function effect_notifications()
+		local function on_fire()
+			set_notifications(table.clone(notification_management.existing))
+		end
+
+		local connection = notification_management.on_change:Connect(on_fire)
+
+		local function disconnect(): ()
+			connection:Disconnect()
+		end
+
+		return disconnect
+	end
+
+	use_effect(effect_notifications, {})
+
+	return notifications
 end
 
 local function notifications_container()
-	local notifications_state, set_notifications_state = React.useState({})
-	
-	React.useEffect(function()
-		set_notifications = set_notifications_state
-		return function()
-			set_notifications = nil
-		end
-	end, {})
-	
-	if #notifications_state == 0 then
-		return nil
-	end
+	local notifications = use_notifications()
 	
 	local notification_elements = {}
-	for i = #notifications_state, 1, -1 do
-		local notification = notifications_state[i]
-		local display_index = #notifications_state - i + 1 -- Convert to bottom-up index
-		notification_elements[tostring(notification.id)] = create_element(notification_component, {
+	local notifications_length = #notifications
+	for index, notification in notifications do
+		local display_order = notifications_length - index + 1 -- Convert to bottom-up index
+		table.insert(notification_elements, create_element(notification_component, {
+			key = notification.id,
 			notification = notification,
-			index = display_index,
-		})
+			index = display_order,
+		}))
 	end
 	
 	return create_element("ScreenGui", {
@@ -158,49 +167,16 @@ local function notifications_container()
 	})
 end
 
---cleanup
-local function cleanup_notifications()
+local function cleanup_notifications(): ()
 	local current_time = tick()
-	local updated = false
-	
-	for i = #notifications, 1, -1 do
-		local notification = notifications[i]
+
+	for index, notification in notification_management.existing do
 		if current_time - notification.created_at >= NOTIFICATION_LIFETIME then
-			table.remove(notifications, i)
-			updated = true
+			notification_management.remove(index)
 		end
 	end
-	
-	if updated and set_notifications then
-		set_notifications({unpack(notifications)})
-	end
 end
 
-task.spawn(function()
-	while true do
-		task.wait(0.1)
-		cleanup_notifications()
-	end
-end)
+RunService.Heartbeat:Connect(cleanup_notifications)
 
-function notification_system.show(...: string)
-	local parts = {...}
-	next_id = next_id + 1
-	
-	local new_notification = {
-		parts = parts,
-		id = next_id,
-		created_at = tick()
-	}
-	
-	table.insert(notifications, new_notification)
-	
-	if set_notifications then
-		set_notifications({unpack(notifications)})
-	end
-end
-
-local tree = ReactRoblox.createRoot(Instance.new("Folder"))
-tree:render(ReactRoblox.createPortal(React.createElement(notifications_container), player_gui))
-
-return notification_system
+return notifications_container

@@ -5,12 +5,14 @@ local React = require(ReplicatedStorage.vendor.ReactLua.React)
 local create_element = React.createElement
 
 local hotbar = require(script.Parent.hotbar)
+local notification_container = require(script.Parent.notification_container)
 local tablist = require(script.Parent.tablist)
 local version = require(script.Parent.version)
 
 local function main()
 	return create_element(React.Fragment, {},
 		create_element(hotbar),
+		create_element(notification_container),
 		create_element(tablist),
 		create_element(version)
 	)
