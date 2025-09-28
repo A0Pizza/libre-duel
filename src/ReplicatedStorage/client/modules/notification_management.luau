@@ -4,7 +4,7 @@ local signal = require(ReplicatedStorage.vendor.signal)
 
 export type notification = {
 	id: number,
-	parts: {string},
+	message: string,
 	created_at: number,
 }
 
@@ -12,12 +12,12 @@ local current_id = 0
 local existing_notifications: {notification} = {}
 local on_change = signal.new()
 
-local function notification_add(parts: {string}): ()
+local function notification_add(message: string): ()
 	current_id += 1
 	
-	local new_notification = {
-		parts = parts,
+	local new_notification: notification = {
 		id = current_id,
+		message = message,
 		created_at = tick()
 	}
 

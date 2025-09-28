@@ -45,14 +45,6 @@ local function notification_component(props: {
 			task.cancel(fade_task)
 		end
 	end, {notification.id})
-
-	local rich_text_parts = {}
-	for i = 1, #notification.parts, 2 do
-		local text = notification.parts[i]
-		local color = notification.parts[i + 1] or "#ffffff"
-		table.insert(rich_text_parts, '<font color="' .. color .. '">' .. text .. '</font>')
-	end
-	local text_content = table.concat(rich_text_parts, "")
 	
 	return create_element("Frame", {
 		Size = UDim2.new(1, 0, 0, 26), -- Slightly bigger from 22 to 26
@@ -88,7 +80,7 @@ local function notification_component(props: {
 			BackgroundTransparency = 1,
 			FontFace = Font.fromId(11702779409, Enum.FontWeight.Regular),
 			TextSize = 15, -- Slightly bigger from 14 to 15
-			Text = text_content,
+			Text = notification.message,
 			TextColor3 = Color3.fromRGB(255, 255, 255),
 			TextXAlignment = Enum.TextXAlignment.Center,
 			TextYAlignment = Enum.TextYAlignment.Center,
