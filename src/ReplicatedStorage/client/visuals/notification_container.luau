@@ -1,5 +1,4 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
 
 local notification_management = require(script.Parent.Parent.modules.notification_management)
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
@@ -11,7 +10,6 @@ local use_state = React.useState
 
 local lifetime_until_fade = 3
 local fade_duration = 0.5
-local lifetime_total = lifetime_until_fade + fade_duration
 
 local function use_fade_out(created_at: number): number
 	local transparency, set_transparency = use_state(0)
@@ -21,15 +19,14 @@ local function use_fade_out(created_at: number): number
 		local time_until_fade = lifetime_until_fade - time_since_creation
 		
 		local function thread_fade(): ()
-			local time_since_start_fading = 0
-
 			if time_until_fade > 0 then
-				local time_waited = task.wait(time_until_fade)
-				time_since_start_fading += time_waited
+				task.wait(time_until_fade)
 			end
 
+			local time_since_start_fading = 0
+
 			while true do
-				local new_transparency = time_since_start_fading / fade_duration
+				local new_transparency = math.min(1, time_since_start_fading / fade_duration)
 				set_transparency(new_transparency)
 
 				local time_waited = task.wait()
@@ -54,11 +51,16 @@ end
 local function notification_component(props: {
 	notification: notification,
 	index: number,
+	on_destroy: () -> (),
 })
 	local notification = props.notification
 	local index = props.index
 	
 	local transparency = use_fade_out(notification.created_at)
+
+	if transparency == 1 then
+		props.on_destroy()
+	end
 	
 	return create_element("Frame", {
 		Size = UDim2.new(1, 0, 0, 26), -- Slightly bigger from 22 to 26
@@ -106,7 +108,7 @@ local function notification_component(props: {
 end
 
 local function use_notifications(): {notification}
-	local notifications, set_notifications = use_state({} :: {notification})
+	local notifications, set_notifications = use_state(notification_management.existing)
 
 	local function effect_notifications()
 		local function on_fire()
@@ -134,13 +136,19 @@ local function notifications_container()
 	local notifications_length = #notifications
 	for index, notification in notifications do
 		local display_order = notifications_length - index + 1 -- Convert to bottom-up index
+
+		local function on_destroy()
+			notification_management.remove(notification.id)
+		end
+
 		table.insert(notification_elements, create_element(notification_component, {
 			key = notification.id,
 			notification = notification,
 			index = display_order,
+			on_destroy = on_destroy,
 		}))
 	end
-	
+
 	return create_element("ScreenGui", {
 		ScreenInsets = "None",
 		ResetOnSpawn = false,
@@ -154,17 +162,5 @@ local function notifications_container()
 		}, notification_elements)
 	})
 end
-
-local function cleanup_notifications(): ()
-	local current_time = tick()
-
-	for index, notification in notification_management.existing do
-		if current_time - notification.created_at >= lifetime_total then
-			notification_management.remove(index)
-		end
-	end
-end
-
-RunService.Heartbeat:Connect(cleanup_notifications)
 
 return notifications_container

@@ -25,8 +25,18 @@ local function notification_add(message: string): ()
 	on_change:Fire()
 end
 
-local function notification_remove(index: number): ()
-	assert(existing_notifications[index] ~= nil, `Index "{index}" is nil.`)
+local function notification_find(id: number): number?
+	for index, notification in existing_notifications do
+		if notification.id == id then
+			return index
+		end
+	end
+	return nil
+end
+
+local function notification_remove(id: number): ()
+	local index = notification_find(id)
+	assert(index ~= nil, `Could not find index of notification of id {id}.`)
 	table.remove(existing_notifications, index)
 	on_change:Fire()
 end
