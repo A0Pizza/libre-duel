@@ -112,7 +112,7 @@ local function use_notifications(): {notification}
 	local notifications, set_notifications = use_state(notification_management.existing)
 
 	local function effect_notifications()
-		local function on_fire()
+		local function on_fire(): ()
 			set_notifications(table.clone(notification_management.existing))
 		end
 
