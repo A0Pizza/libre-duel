@@ -18,7 +18,7 @@ local function notification_add(message: string): ()
 	local new_notification: notification = {
 		id = current_id,
 		message = message,
-		created_at = tick()
+		created_at = tick(),
 	}
 
 	table.insert(existing_notifications, new_notification)
