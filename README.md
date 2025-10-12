@@ -176,6 +176,7 @@ Libre Duel is developed by [@EliTheGingerCat](https://github.com/EliTheGingerCat
 
 It also has contributions from:
 - [@Austriaaa](https://github.com/Austriaaa/)
+- [@oTillyy](https://github.com/oTillyy)
 
 The following are external projects and assets that Libre Duel uses.
 
