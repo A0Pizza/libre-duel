@@ -10,7 +10,7 @@ local function cube_in_hitbox(position: Vector3, ignore_player: Player?): boolea
 
 	for _, part in parts do
 		if CollectionService:HasTag(part, "hitbox") then
-			if ignore_player and part:IsDescendantOf(ignore_player.Character) then
+			if ignore_player ~= nil and part:IsDescendantOf(ignore_player.Character) then
 				continue
 			end
 			return true
