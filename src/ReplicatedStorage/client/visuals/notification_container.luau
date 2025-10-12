@@ -68,29 +68,30 @@ local function notification_component(props: {
 		AnchorPoint = Vector2.new(0, 1),
 		BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 		BackgroundTransparency = 0.5 + (transparency * 0.5),
-	}, {
-		create_element("UICorner", { CornerRadius = UDim.new(0, 13) }),
+	},
+		create_element("UICorner", {
+			CornerRadius = UDim.new(0, 13),
+		}),
 		create_element("UIStroke", {
 			Thickness = 1,
 			Color = Color3.fromRGB(255, 255, 255),
 			ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
 			Transparency = transparency,
-		}, {
+		}, 
 			create_element("UIGradient", {
 				Color = ColorSequence.new({
 					ColorSequenceKeypoint.new(0, Color3.fromRGB(134, 134, 134)),
 					ColorSequenceKeypoint.new(1, Color3.fromRGB(70, 70, 70)),
 				}),
 				Rotation = -90,
-			}),
-		}),
+			})
+		),
 		create_element("UIPadding", {
 			PaddingTop = UDim.new(0, 2),
 			PaddingBottom = UDim.new(0, 2),
 			PaddingLeft = UDim.new(0, 2),
 			PaddingRight = UDim.new(0, 2),
 		}),
-		
 		create_element("TextLabel", {
 			Size = UDim2.new(1, 0, 1, 0),
 			BackgroundTransparency = 1,
@@ -103,8 +104,8 @@ local function notification_component(props: {
 			TextScaled = false,
 			TextTransparency = transparency,
 			RichText = true,
-		}),
-	} :: {any})
+		})
+	)
 end
 
 local function use_notifications(): {notification}
@@ -137,7 +138,7 @@ local function notifications_container()
 	for index, notification in notifications do
 		local display_order = notifications_length - index + 1 -- Convert to bottom-up index
 
-		local function on_destroy()
+		local function on_destroy(): ()
 			notification_management.remove(notification.id)
 		end
 
@@ -150,16 +151,17 @@ local function notifications_container()
 	end
 
 	return create_element("ScreenGui", {
-		ScreenInsets = "None",
+		Name = "Notifications",
 		ResetOnSpawn = false,
-		ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
 	}, {
 		create_element("Frame", {
 			AnchorPoint = Vector2.new(0, 1),
 			Position = UDim2.new(0, 15, 1, -15),
 			Size = UDim2.new(0, 240, 0, 180),
 			BackgroundTransparency = 1,
-		}, notification_elements)
+		},
+			notification_elements
+		)
 	})
 end
 
