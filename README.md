@@ -77,7 +77,7 @@ Optional: Run `lune list` to see the available scripts. Only `build` and `syncba
 - `lune run syncback`: Sync ServerStorage and Workspace into the filesystem. ⚠️ This is buggy and may need to be run multiple times. I will try to fix it.
 
 Question: How do I know I can trust all this?  
-Answer: This is not something that really belongs in this README. If you want, we can talk about it in the Revolt server.
+Answer: This is not something that really belongs in this README. If you want, we can talk about it in the Stoat (formerly known as Revolt) server.
 
 ### Add a feature
 
