@@ -168,14 +168,15 @@ return IPinfo_token
 - Functions should return a single value.
 - Add type annotations to all function parameters and return values. Exceptions:
 	- Do not annotate the return type if it is a React element.
-	- Do not annotate the return type if it is a function. (For example: React Effects.) 
+	- Do not annotate the return type if it is a function. (For example: React Effects.)
+- Do not use anonymous functions.
 
 ## Credits
 
 Libre Duel is developed by [@EliTheGingerCat](https://github.com/EliTheGingerCat) and [@coolpeter98](https://github.com/coolpeter98).
 
 It also has contributions from:
-- [@Austriaaa](https://github.com/Austriaaa/)
+- [@Austriaaa](https://github.com/Austriaaa)
 - [@oTillyy](https://github.com/oTillyy)
 
 The following are external projects and assets that Libre Duel uses.
