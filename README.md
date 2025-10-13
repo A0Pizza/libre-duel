@@ -81,15 +81,15 @@ Answer: This is not something that really belongs in this README. If you want, w
 ### Lune commands
 
 Run `lune list` for an explanation of what each command does. Output:
-- build - Build the Place.
-- build_no_map - Build the Place without the massive map.
-- crlf - Replace LF with CRLF in text files.
-- generate_no_map - Generate a project file without the massive map.
-- run-context - Remove all meta files that only set RunContext.
-- serve - Serve information from the filesystem to the Roblox Studio plugin.
-- serve_no_map - Serve without the massive map.
-- sourcemap - Create a mapping of the filesystem into Roblox objects.
-- syncback - Sync instances from the built Place into the filesystem.
+- `build` - Build the Place.
+- `build_no_map` - Build the Place without the massive map.
+- `crlf` - Replace LF with CRLF in text files.
+- `generate_no_map` - Generate a project file without the massive map.
+- `run-context` - Remove all meta files that only set RunContext.
+- `serve` - Serve information from the filesystem to the Roblox Studio plugin.
+- `serve_no_map` - Serve without the massive map.
+- `sourcemap` - Create a mapping of the filesystem into Roblox objects.
+- `syncback` - Sync instances from the built Place into the filesystem.
 
 Sourcemapping and serving are the main utilities. However, `sourcemap` and `serve` are both simple Rojo commands that do not depend on the name of the game, so there is not really any strong reason to use them. I use `sourcemap` anyway.
 
