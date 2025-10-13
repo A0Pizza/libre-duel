@@ -124,7 +124,7 @@ My branch names essentially come in two parts, `type` and `name`, and take the f
 
 If the change I am making is a new feature, then `type = "feature"`. If the change is fixing a problem, then `type = "fix"`. There are other types of changes one may make, but I would probably just pick whichever one makes the most sense. Most changes are `feature`. [One time](https://github.com/evaera/moonwave/pull/171) I used `type = "docs"` but I would not do it anymore.
 
-As for `name`, I just describe the feature as concise as possible. I use 2 to 4 words. Sometimes I use imperative tense, sometimes it is just a compound noun.
+As for `name`, I just describe the feature as concisely as possible. I use 2 to 4 words. Sometimes I use imperative tense, sometimes it is just a compound noun.
 
 The whole branch is in `lower_snake_case`. Since Luau does not allow dashes in identifiers, I feel like all Luau projects should avoid dashes for names, even in Git. At some point, I researched about dashes in Git branch names, and I do not remember finding a conclusive answer, probably because names do not really matter that much. They matter *a little*. Also, I think underscores just make more sense, as they are low down and do not take up attention, unlike hyphens (and definitely unlike the longer dashes (en and em)), so they are closer to a space, which would be ideal. One might point out that the name of this repository uses a dash: "bridge-duel"; yeah, I might need to think more on this.
 
