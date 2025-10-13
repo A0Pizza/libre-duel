@@ -6,6 +6,7 @@
 - [Purpose](#purpose)
 - [Contributing](#contributing)
 	- [Setup the environment](#setup-the-environment)
+	- [Lune commands](#lune-commands)
 	- [Add a feature](#add-a-feature)
 	- [Development guidelines](#development-guidelines)
 	- [Style](#style)
@@ -72,12 +73,38 @@ Consider this diagram:
 
 You now have [Lune](https://lune-org.github.io/docs/) and [Rojo](https://rojo.space/).
 
-Optional: Run `lune list` to see the available scripts. Only `build` and `syncback` will be of value. You can run:
-- `lune run build`: Build the Roblox Place into `./libre-duel.rbxl`.
-- `lune run syncback`: Sync ServerStorage and Workspace into the filesystem. ⚠️ This is buggy and may need to be run multiple times. I will try to fix it.
+You might want to check out the [Lune commands](#lune-commands).
 
 Question: How do I know I can trust all this?  
 Answer: This is not something that really belongs in this README. If you want, we can talk about it in the Stoat (formerly known as Revolt) server.
+
+### Lune commands
+
+Run `lune list` for an explanation of what each command does. Output:
+- build - Build the Place.
+- build_no_map - Build the Place without the massive map.
+- crlf - Replace LF with CRLF in text files.
+- generate_no_map - Generate a project file without the massive map.
+- run-context - Remove all meta files that only set RunContext.
+- serve - Serve information from the filesystem to the Roblox Studio plugin.
+- serve_no_map - Serve without the massive map.
+- sourcemap - Create a mapping of the filesystem into Roblox objects.
+- syncback - Sync instances from the built Place into the filesystem.
+
+Sourcemapping and serving are the main utilities. However, `sourcemap` and `serve` are both simple Rojo commands that do not depend on the name of the game, so there is not really any strong reason to use them. I use `sourcemap` anyway.
+
+Building is also important, though serving accomplishes the same thing for development. However, I still build every so often so that there will be less work for the plugin.
+
+When the lobby was added ([#15](<https://github.com/EliTheGingerCat/libre-duel/pull/15>)), serving started to take a lot longer. Thus, I created some scripts to enable development without the massive map. `generate_no_map` takes the existing project file, `default.project.json`, and creates `no_map.project.json`. It should be run every time the project file changes. `serve_no_map` and `build_no_map` use this new project file for serving and building, respectively. I use them instead of `serve` and `build`. In theory, this problem may return as the codebase grows larger, though text files are a lot smaller than Roblox models; furthermore, I can come up with some ways of even serving without certain code files 😼.
+
+I use `syncback` whenver I want to sync models into the filesystem from ServerStorage or from Workspace. Sometimes, though, I just sync models manually by saving them to file.
+
+`crlf` and `run-context` (I ought to make it use an underscore) have never been necessary for Libre Duel. I used them when converting over another game of mine, [Ethical Eli Hub](<https://github.com/EliTheGingerCat/ethical-eli-hub>), since it was made before I started using Rojo.
+
+All of these scripts depend on [./build_name.luau](./build_name.luau), so the Rojo command for them requires specifying `libre-duel.rbxl` if one wishes to use Rojo directly:
+- `build`
+- `build_no_map`
+- `syncback`
 
 ### Add a feature
 
