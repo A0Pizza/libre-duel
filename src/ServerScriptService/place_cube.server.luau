@@ -51,7 +51,7 @@ local function on_invoke(player: Player, cube_position: unknown): boolean
 		return false
 	end
 
-	local occupied_player = cube_in_hitbox(cube_position)
+	local occupied_player = cube_in_hitbox(cube_position, player)
 	if occupied_player then
 		debug_print("Occupied by player.")
 		return false
