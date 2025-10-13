@@ -21,7 +21,7 @@ At some point I realised it would be cool how Bridge Duel would have two edition
 
 When Bridge Duel got taken down, a new reason emerged: Libre Duel would now be the *only* variant of Bridge Duel available. The hope is that this game will be different enough to not warrant a takedown.
 
-Join our Revolt server [here](<https://rvlt.gg/p4azhCRE>)
+Join our Stoat (formerly known as Revolt) server [here](<https://stt.gg/p4azhCRE>)
 
 ## Contributing
 
@@ -31,7 +31,7 @@ Here is a guide to prepare everything to start contributing. It assumes you know
 
 Similar to the scientific method, it is optimal to read through all the instructions before beginning.
 
-Feel free to ask for help on the Revolt server!
+Feel free to ask for help on the Stoat (formerly known as Revolt) server!
 
 1. Fork this repository on GitHub. In the fork options, unselect this option: Copy the `main` branch only
 1. Install [Git](https://git-scm.com/).
