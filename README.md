@@ -146,7 +146,7 @@ Then, commit the changes with `git commit`. Let your commit message be `COMMIT_M
 
 Repeat this until your work is done.
 
-6. Push the branch upstream with `git push -u origin HEAD`. (There are two assumptipns here: that your remote is called "origin" and that you are currently checked out on the branch you are working on (since "HEAD" is used).)
+6. Push the branch upstream with `git push -u origin HEAD`. (There are two assumptions here: that your remote is called "origin" and that you are currently checked out on the branch you are working on (since "HEAD" is used).)
 
 7. The terminal will output a link to use to make a pull request. Use that link. Write a good title and description for your pull request.
 
