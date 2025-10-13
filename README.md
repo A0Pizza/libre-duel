@@ -161,7 +161,7 @@ return IPinfo_token
 
 - Add a trailing newline to text files.
 - Use trailing commas in code.
-- Use `snake_case`.
+- Use `lower_snake_case`.
 - Place all requires in the same spot.
 - Order requires alphabetically.
 - Use `Color3.new` over the other constructors (`fromHex`, `fromHSV`, `fromRGB`).
