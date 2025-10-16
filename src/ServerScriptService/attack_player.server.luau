@@ -1,9 +1,13 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local add_cooldown = require(ReplicatedStorage.modules.add_cooldown)
+local is_on_cooldown = require(ReplicatedStorage.modules.is_on_cooldown)
+
 local play_sound_excluding = require(script.Parent.modules.play_sound_excluding)
 local player_range_server = require(script.Parent.modules.player_range_server)
 
-local DAMAGE = 10
+local sword_damage = require(ReplicatedStorage.modules.sword_damage)
+local sword_cooldown_server = require(script.Parent.modules.sword_cooldown_server)
 
 local function on_event(player: Player, target_character: unknown): ()
 	if typeof(target_character) ~= "Instance" then
@@ -42,10 +46,19 @@ local function on_event(player: Player, target_character: unknown): ()
 	if target_humanoid == nil then
 		return
 	end
+	if attacker_character.Humanoid.Health > 0 and target_humanoid.Health > 0 and is_on_cooldown(player, "attack_melee") == false then --me when the basic sanity checks
 
-	target_humanoid.Health -= DAMAGE
+		target_humanoid.Health -= sword_damage
 
-	play_sound_excluding(player, "player_damaged", attacker_position)
+		local attack_vector = target_position - attacker_position
+
+		local target_player = game.Players:GetPlayerFromCharacter(target_character)
+		ReplicatedStorage.remotes.apply_client_knockback:FireClient(target_player, attacker_root, target_root, 1, true)
+
+		play_sound_excluding(player, "player_damaged", target_position)
+
+		add_cooldown(player, "attack_melee", sword_cooldown_server)
+	end
 end
 
 ReplicatedStorage.remotes.attack_player.OnServerEvent:Connect(on_event)
