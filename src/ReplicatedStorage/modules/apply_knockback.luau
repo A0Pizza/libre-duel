@@ -24,7 +24,7 @@ local function apply_knockback(vector, target, strength: number?, constant_stren
 	linearvelocity.Attachment0 = attachment
 	linearvelocity.Parent = attachment
 
-	linearvelocity.VectorVelocity = Vector3.new(direction.X, 15, direction.Z) * strength --have to apply vertical velocity first because roblox is goofy
+	linearvelocity.VectorVelocity = Vector3.new(direction.X, 15, direction.Z) * strength
 	debris:AddItem(attachment, 0.2) --m~memowwy lyeaks awe bawwd~~~ OwO
 end
 
