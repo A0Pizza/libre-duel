@@ -1,5 +1,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local apply_knockback = require(ReplicatedStorage.modules.apply_knockback)
+
 local add_cooldown = require(ReplicatedStorage.modules.add_cooldown)
 local is_on_cooldown = require(ReplicatedStorage.modules.is_on_cooldown)
 
@@ -53,7 +55,7 @@ local function on_event(player: Player, target_character: unknown): ()
 		local attack_vector = target_position - attacker_position
 
 		local target_player = game.Players:GetPlayerFromCharacter(target_character)
-		ReplicatedStorage.remotes.apply_client_knockback:FireClient(target_player, attacker_root, target_root, 1, true)
+		apply_knockback(attacker_root, target_root, 1.2, true)
 
 		play_sound_excluding(player, "player_damaged", target_position)
 
