@@ -31,6 +31,7 @@ local function player_card(props: {
 	colour: Color3,
 	image: string,
 	name: string,
+	order: number,
 })
 	return create_element("TextLabel", {
 		BackgroundColor3 = Color3.fromRGB(0, 0, 0),
@@ -41,6 +42,7 @@ local function player_card(props: {
 		Size = UDim2.new(0.5, -5, 0, 38),
 		TextXAlignment = "Left",
 		Text = props.name,
+		LayoutOrder = props.order,
 	},
 		create_element("UIPadding", {
 			PaddingLeft = UDim.new(0, 40),
@@ -97,12 +99,6 @@ local function use_players(): {Player}
 	return players
 end
 
-local colours = {
-	blue = Color3.fromRGB(13, 162, 221),
-	gray = Color3.fromRGB(201, 201, 201),
-	red = Color3.fromRGB(177, 76, 78),
-}
-
 local function player_list()
 	local players = use_players()
 
@@ -110,9 +106,10 @@ local function player_list()
 	for index, player in players do
 		cards[index] = create_element(player_card, {
 			key = player.UserId,
-			colour = colours.gray,
+			colour = player.TeamColor.Color or Color3.new(0.7882, 0.7882, 0.7882), --rgb(201, 201, 201), would be interesting if i made a pastel color generator from userid and used that instead!
 			image = `rbxthumb://type=AvatarBust&id={player.UserId}&w=50&h=50`,
-			name = player.Name
+			name = player.Name,
+			order = -(player.TeamColor.Color.r + player.TeamColor.Color.g + player.TeamColor.Color.b) * 100, -- i prefer darker colors going first, just remove the minus to make bright colors go first.
 		})
 	end
 
@@ -185,7 +182,7 @@ local function location_display()
 	elseif location.status == "fail" then
 		location_text = "Failed to fetch server location."
 	elseif location.status == "success" then
-		location_text = `Server location:\n{location.result}`
+		location_text = location.result
 	end
 
 	return create_element("TextLabel", {
@@ -242,7 +239,8 @@ local function tablist()
 		create_element("Frame", {
 			AnchorPoint = Vector2.new(0.5, 0),
 			Position = UDim2.new(0.5, 0, 0, 147),
-			Size = UDim2.fromOffset(720, 172),
+			Size = UDim2.fromOffset(720, 0),
+			AutomaticSize = "Y",
 			BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 			BackgroundTransparency = 0.5,
 		},
