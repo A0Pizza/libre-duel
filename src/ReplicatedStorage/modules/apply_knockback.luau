@@ -1,10 +1,8 @@
-local delay_for_frames = require(script.Parent.delay_for_frames)
-
 local Debris = game:GetService("Debris")
 
 --constant_strength keeps knockback consistent no matter how far the player is hit from! you wouldn't really want that set to false unless the knockback is from an explosive.
-local function apply_knockback(attacker: Part, target: Part, strength: number, constant_strength: boolean?)
-	local strength = strength or 1
+local function apply_knockback(attacker: Part, target: Part, strength: number?, constant_strength: boolean?): ()
+	local strength_result = strength or 1
 	constant_strength = constant_strength ~= false
 
 	local direction = target.Position - attacker.Position
@@ -25,7 +23,7 @@ local function apply_knockback(attacker: Part, target: Part, strength: number, c
 	linearvelocity.Attachment0 = attachment
 	linearvelocity.Parent = attachment
 
-	linearvelocity.VectorVelocity = Vector3.new(direction.X, 15, direction.Z) * strength
+	linearvelocity.VectorVelocity = Vector3.new(direction.X, 15, direction.Z) * strength_result
 	Debris:AddItem(attachment, 0.2) --m~memowwy lyeaks awe bawwd~~~ OwO
 end
 

@@ -1,6 +1,6 @@
 local cooldowns = require(script.Parent.cooldowns)
 
-local function remove_cooldown(player: Player, name: string)
+local function remove_cooldown(player: Player, name: string): ()
 	if cooldowns[player] then
 		cooldowns[player][name] = nil
 	end
