@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
 -- This is helpful:
--- > local humanoid = workspace:FindFirstChild("clone of Ethical_Eli").Humanoid humanoid.Health = humanoid.MaxHealth
+-- > local humanoid = game:GetService("Workspace"):FindFirstChild("clone of " .. game:GetService("Players"):GetPlayers()[1].Name).Humanoid humanoid.Health = humanoid.MaxHealth
 -- (Make sure to run in server.)
 
 local enabled = false
