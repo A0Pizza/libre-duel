@@ -13,8 +13,6 @@ local function apply_knockback(attacker: Part, target: Part, strength: number?, 
 		end
 	end
 
-	print("Direction:", direction)
-
 	local attachment = Instance.new("Attachment")
 	attachment.Parent = target
 
