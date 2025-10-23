@@ -1,8 +1,9 @@
-local wait_for_frames = require(script.Parent.wait_for_frames)
-
 local function delay_for_frames(frames: number, callback: () -> ())
 	task.spawn(function()
-		wait_for_frames(frames)
+		frames = frames or 1
+		for _ = 1, frames do
+			RunService.Heartbeat:Wait()
+		end
 		callback()
 	end)
 end
