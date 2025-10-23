@@ -17,7 +17,7 @@ local function on_character_added(character: Model): ()
 	weld.Part0 = clone
 	weld.Part1 = root
 
-	clone.Parent = character -- changed to parent to root instead because parenting to character made roblox goof with the size for some reason..
+	clone.Parent = root -- changed to parent to root instead because parenting to character made roblox goof with the size for some reason..
 end
 
 local function on_player_added(player: Player): ()

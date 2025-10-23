@@ -2,6 +2,6 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local sword_cooldown = require(ReplicatedStorage.modules.sword_cooldown)
 
-sword_cooldown_server = sword_cooldown - 0.1 --why? to compensate for ping.
+local sword_cooldown_server = sword_cooldown - 0.1 --why? to compensate for ping.
 
 return sword_cooldown_server
