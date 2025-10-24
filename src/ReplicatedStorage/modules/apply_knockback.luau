@@ -16,12 +16,12 @@ local function apply_knockback(attacker: Part, target: Part, strength: number?, 
 	local attachment = Instance.new("Attachment")
 	attachment.Parent = target
 
-	local linearvelocity = Instance.new("LinearVelocity")
-	linearvelocity.MaxForce = 150000
-	linearvelocity.Attachment0 = attachment
-	linearvelocity.Parent = attachment
+	local constant_velocity = Instance.new("LinearVelocity")
+	constant_velocity.MaxForce = 150000
+	constant_velocity.Attachment0 = attachment
+	constant_velocity.Parent = attachment
 
-	linearvelocity.VectorVelocity = Vector3.new(direction.X, 15, direction.Z) * strength_result
+	constant_velocity.VectorVelocity = Vector3.new(direction.X, 15, direction.Z) * strength_result
 	Debris:AddItem(attachment, 0.2) --m~memowwy lyeaks awe bawwd~~~ OwO
 end
 
