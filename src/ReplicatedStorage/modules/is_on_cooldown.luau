@@ -1,8 +1,10 @@
 local cooldowns = require(script.Parent.cooldowns)
 local remove_cooldown = require(script.Parent.remove_cooldown)
 
+type player_cooldown = cooldowns.player_cooldowns
+
 local function is_on_cooldown(player: Player, name: string): boolean
-	local player_cooldowns = cooldowns[player]
+	local player_cooldowns: player_cooldown? = cooldowns[player]
 	if player_cooldowns == nil then
 		return false
 	end
