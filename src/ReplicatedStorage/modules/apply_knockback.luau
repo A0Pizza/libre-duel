@@ -3,11 +3,11 @@ local Debris = game:GetService("Debris")
 --constant_strength keeps knockback consistent no matter how far the player is hit from! you wouldn't really want that set to false unless the knockback is from an explosive.
 local function apply_knockback(attacker: Part, target: Part, strength: number?, constant_strength: boolean?): ()
 	local strength_result = strength or 1
-	constant_strength = constant_strength ~= false
+	local constant_strength_enabled = constant_strength ~= false
 
 	local direction = target.Position - attacker.Position
 
-	if constant_strength then
+	if constant_strength_enabled then
 		if direction.Magnitude > 0 then
 			direction = direction.Unit * 25
 		end
