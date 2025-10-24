@@ -200,6 +200,7 @@ return IPinfo_token
 	- Do not annotate the return type if it is a React element.
 	- Do not annotate the return type if it is a function. (For example: React Effects.)
 - Do not use anonymous functions.
+- It is preferred to use British English spelling (such as "colour" instead of "color").
 
 ## Credits
 
