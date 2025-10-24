@@ -1,4 +1,5 @@
 local cooldowns = require(script.Parent.cooldowns)
+local remove_cooldown = require(script.Parent.remove_cooldown)
 
 local function is_on_cooldown(player: Player, name: string): boolean
 	local player_cooldowns = cooldowns[player]
@@ -11,7 +12,13 @@ local function is_on_cooldown(player: Player, name: string): boolean
 		return false
 	end
 
-	return end_time > os.clock()
+	local is_cool = end_time > os.clock()
+
+	if is_cool then
+		remove_cooldown(player, name)
+	end
+
+	return is_cool
 end
 
 return is_on_cooldown
