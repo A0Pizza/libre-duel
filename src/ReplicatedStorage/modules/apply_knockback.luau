@@ -1,6 +1,6 @@
 local Debris = game:GetService("Debris")
 
---constant_strength keeps knockback consistent no matter how far the player is hit from! you wouldn't really want that set to false unless the knockback is from an explosive.
+-- `constant_strength` ensures that the distance between the attacker and the target does not affect knockback. In general, it should be `true`. An example of when it should be `false` is when the knockback is from an explosive.
 local function apply_knockback(attacker: Part, target: Part, strength: number?, constant_strength: boolean?): ()
 	local strength_result = strength or 1
 	local constant_strength_enabled = constant_strength ~= false
