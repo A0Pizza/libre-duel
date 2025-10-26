@@ -1,3 +1,6 @@
+-- perceived brightness is basically the measurement of brightness that looks the most accurate to the human eye
+-- https://en.wikipedia.org/wiki/Lightness
+
 local function srgb_to_linear(colour_channel)
     if colour_channel <= 0.04045 then
         return colour_channel / 12.92
@@ -14,7 +17,6 @@ local function luminance_to_l_star(luminance)
     end
 end
 
--- Main function: returns perceived brightness of a Color3
 local function get_perceived_brightness(colour)
     local r, g, b = colour.R, colour.G, colour.B
     local luminance = 0.2126 * srgb_to_linear(r) + 0.7152 * srgb_to_linear(g) + 0.0722 * srgb_to_linear(b)
