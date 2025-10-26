@@ -212,7 +212,7 @@ local function health_bar(props: { health_extra: number })
 		create_element(health_main),
 		props.health_extra > 0 and create_element(health_extra, {
 			health_extra = props.health_extra
-		}) or nil
+		})
 	)
 end
 
