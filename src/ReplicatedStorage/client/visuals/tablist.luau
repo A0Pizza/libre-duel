@@ -3,6 +3,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
+local get_perceived_brightness = require(ReplicatedStorage.modules.get_perceived_brightness)
 local keybinds = require(ReplicatedStorage.client.modules.keybinds)
 local location_default = require(ReplicatedStorage.modules.location_default)
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
@@ -37,12 +38,12 @@ local function player_card(props: {
 		BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 		BackgroundTransparency = 0.7,
 		FontFace = Font.fromId(11702779409, Enum.FontWeight.Regular),
+		LayoutOrder = props.order,
 		TextColor3 = props.colour,
 		TextScaled = true,
 		Size = UDim2.new(0.5, -5, 0, 38),
 		TextXAlignment = "Left",
 		Text = props.name,
-		LayoutOrder = props.order,
 	},
 		create_element("UIPadding", {
 			PaddingLeft = UDim.new(0, 40),
@@ -106,10 +107,10 @@ local function player_list()
 	for index, player in players do
 		cards[index] = create_element(player_card, {
 			key = player.UserId,
-			colour = player.TeamColor.Color or Color3.new(0.7882, 0.7882, 0.7882), --rgb(201, 201, 201), would be interesting if i made a pastel color generator from userid and used that instead!
+			colour = player.TeamColor.Color,
 			image = `rbxthumb://type=AvatarBust&id={player.UserId}&w=50&h=50`,
 			name = player.Name,
-			order = -(player.TeamColor.Color.r + player.TeamColor.Color.g + player.TeamColor.Color.b) * 100, -- i prefer darker colors going first, just remove the minus to make bright colors go first.
+			order = get_perceived_brightness(player.TeamColor.Color) * -10000, --multiplying because the LayoutOrder property automatically rounds off decimals and i want accuracy.
 		})
 	end
 
