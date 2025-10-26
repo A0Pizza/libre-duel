@@ -1,6 +1,6 @@
 -- perceived brightness is basically the measurement of brightness that looks the most accurate to the human eye
 -- https://en.wikipedia.org/wiki/Lightness
--- output ranges from 0 (pitch black) to 100 (fully white)
+-- this module returns a value ranging from 0 (pitch black) to 100 (fully white)
 
 local function srgb_to_linear(colour_channel)
     if colour_channel <= 0.04045 then
