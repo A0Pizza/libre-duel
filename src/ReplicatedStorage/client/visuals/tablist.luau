@@ -3,7 +3,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
-local get_perceived_brightness = require(ReplicatedStorage.modules.get_perceived_brightness)
+local get_perceived_lightness = require(ReplicatedStorage.modules.get_perceived_lightness)
 local keybinds = require(ReplicatedStorage.client.modules.keybinds)
 local location_default = require(ReplicatedStorage.modules.location_default)
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
@@ -110,7 +110,7 @@ local function player_list()
 			colour = player.TeamColor.Color,
 			image = `rbxthumb://type=AvatarBust&id={player.UserId}&w=50&h=50`,
 			name = player.Name,
-			order = get_perceived_brightness(player.TeamColor.Color) * -10000, --multiplying because the LayoutOrder property automatically rounds off decimals and i want accuracy.
+			order = get_perceived_lightness(player.TeamColor.Color) * -10000, --multiplying because the LayoutOrder property automatically rounds off decimals and i want accuracy.
 		})
 	end
 
