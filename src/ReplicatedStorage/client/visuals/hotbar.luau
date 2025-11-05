@@ -203,7 +203,9 @@ local function health_extra(props: {
 	return create_element(slider_display, props_slider)
 end
 
-local function health_bar(props: { health_extra: number })
+local function health_bar(props: {
+	health_extra: number,
+})
 	return create_element("Frame", {
 		Name = "health_bar",
 		BackgroundTransparency = 1,
