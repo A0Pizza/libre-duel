@@ -3,6 +3,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
+local get_perceived_lightness = require(ReplicatedStorage.modules.get_perceived_lightness)
 local keybinds = require(ReplicatedStorage.client.modules.keybinds)
 local location_default = require(ReplicatedStorage.modules.location_default)
 local React = require(ReplicatedStorage.vendor.ReactLua.React)
@@ -31,11 +32,13 @@ local function player_card(props: {
 	colour: Color3,
 	image: string,
 	name: string,
+	order: number,
 })
 	return create_element("TextLabel", {
 		BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 		BackgroundTransparency = 0.7,
 		FontFace = Font.fromId(11702779409, Enum.FontWeight.Regular),
+		LayoutOrder = props.order,
 		TextColor3 = props.colour,
 		TextScaled = true,
 		Size = UDim2.new(0.5, -5, 0, 38),
@@ -97,12 +100,6 @@ local function use_players(): {Player}
 	return players
 end
 
-local colours = {
-	blue = Color3.fromRGB(13, 162, 221),
-	gray = Color3.fromRGB(201, 201, 201),
-	red = Color3.fromRGB(177, 76, 78),
-}
-
 local function player_list()
 	local players = use_players()
 
@@ -110,9 +107,10 @@ local function player_list()
 	for index, player in players do
 		cards[index] = create_element(player_card, {
 			key = player.UserId,
-			colour = colours.gray,
+			colour = player.TeamColor.Color,
 			image = `rbxthumb://type=AvatarBust&id={player.UserId}&w=50&h=50`,
-			name = player.Name
+			name = player.Name,
+			order = get_perceived_lightness(player.TeamColor.Color) * -10000, --multiplying because the LayoutOrder property automatically rounds off decimals and i want accuracy.
 		})
 	end
 
@@ -185,7 +183,7 @@ local function location_display()
 	elseif location.status == "fail" then
 		location_text = "Failed to fetch server location."
 	elseif location.status == "success" then
-		location_text = `Server location:\n{location.result}`
+		location_text = location.result
 	end
 
 	return create_element("TextLabel", {
@@ -242,7 +240,8 @@ local function tablist()
 		create_element("Frame", {
 			AnchorPoint = Vector2.new(0.5, 0),
 			Position = UDim2.new(0.5, 0, 0, 147),
-			Size = UDim2.fromOffset(720, 172),
+			Size = UDim2.fromOffset(720, 0),
+			AutomaticSize = "Y",
 			BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 			BackgroundTransparency = 0.5,
 		},

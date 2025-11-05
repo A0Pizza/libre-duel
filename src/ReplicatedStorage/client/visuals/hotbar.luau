@@ -41,7 +41,7 @@ local function slider_display(props: {
 			Size = UDim2.fromScale(1, 1),
 			FontFace = Font.fromId(11702779409, Enum.FontWeight.Regular),
 			ZIndex = 3,
-			Text = tostring(props.fill_value),
+			Text = tostring(math.ceil(props.fill_value)),
 			TextScaled = true,
 			TextColor3 = Color3.fromRGB(255, 255, 255),
 		}),
@@ -212,7 +212,7 @@ local function health_bar(props: {
 		Size = UDim2.fromScale(1, 1),
 	},
 		create_element(health_main),
-		create_element(health_extra, {
+		props.health_extra > 0 and create_element(health_extra, {
 			health_extra = props.health_extra
 		})
 	)
@@ -324,7 +324,7 @@ local function hotbar()
 				BackgroundColor3 = Color3.fromRGB(0, 0, 0),
 				BackgroundTransparency = 0.5,
 				Position = UDim2.new(0.5, 0, 1, -10),
-				Size = UDim2.fromOffset(685, 80),
+				Size = UDim2.fromOffset(680, 80),
 			},
 			create_element("UICorner", {
 				CornerRadius = UDim.new(0.45, 0),
